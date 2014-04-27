@@ -1,26 +1,24 @@
-/*global _, $ */
-/*jshint bitwise:true, eqeqeq:true, forin:true, immed:true, latedef:true, newcap:true, undef:true,
-	trailing:true, smarttabs:true, sub:true, browser:true, devel:true, maxlen:150 */
-////////////////////  fn  ////////////////////
-(function (root) {
-//----------------------------------------
-var _ext = {};
 
-//url
-_ext.url = {};
-_ext.url._ini = function () {
+////////////////////  url  ////////////////////
+void function (root, _ext) {
+	'use strict'
+
+	//ns
+	var url = {}
+
 	//page type
-	this.isInFrame = window.self !== window.top;
+	url.isInFrame = window.self !== window.top;
 
 	//basic info
-	this.str = location.href;
-	this.host = location.hostname.toLowerCase();  //without port number
-	this.path = location.pathname;
-	this.query = location.search.slice(1).replace(/&+$/, '');
+	url.str = location.href;
+	url.host = location.hostname.toLowerCase();  //without port number
+	url.path = location.pathname;
+	url.query = location.search.slice(1).replace(/&+$/, '');
+
 
 	//url param processing
-	this._param = null;
-	this.parseQuery = function(sQuery) {
+	url._param = null;
+	url.parseQuery = function(sQuery) {
 		var data = {};
 		if (sQuery && _.isString(sQuery)) {
 			var aQ = sQuery.split('&'), aP, sN, sV;
@@ -35,13 +33,13 @@ _ext.url._ini = function () {
 		}
 		return data;
 	};
-	this.getParam = function (s) {  //API: var sCode = UE.url.getParam('prdcode');
+	url.getParam = function (s) {  //API: var sCode = UE.url.getParam('prdcode');
 		if (!this._param) {
-			this._param = this.parseQuery(this.query);
+			url._param = this.parseQuery(this.query);
 		}
 		return _.isString(s) ? this._param[s.toLowerCase()] : false;
 	};
-	this.appendParam = function (url, param) {  //append param to (sUrl || current url)
+	url.appendParam = function (url, param) {  //append param to (sUrl || current url)
 		var s = '';
 		url = _.isString(url) ? url : '';
 		url = _.url.removeHashFromUrl(url);
@@ -57,42 +55,11 @@ _ext.url._ini = function () {
 		s = param ? url + (_.str.include(url, '?') ? '&' : '?') + param : s;
 		return s || false;
 	};
-	this.appendParamAsPath = function (url, param) {
-		var s = '';
-		url = _.isString(url) ? url : '';
-		url = _.url.removeHashFromUrl(url);
-		if (_.isObject(param)) {  //{a:b} -> 'a/b/'
-			var temp = '';
-			_.each(param, function (n, i) {
-				temp += (i + '/' + n + '/');
-			});
-			param = temp;
-		} else if (_.isString(param)) {
-			//fix param string: '/a/b', '/a/b/' -> 'a/b/'
-			_.log(param);
-			if (_.str.startsWith(param, '/')) {param = param.slice(1); }
-			_.log(param);
-			param = _.str.rtrim(param, '/');
-			_.log(param);
-			param += '/';
-			_.log(param);
-			if (_.str.count(param, '/') % 2) {param = null; }  //check amount of '/', it should be even
-			_.log(param);
-		} else {
-			param = null;
-		}
-		//append
-		if (param) {
-			url += _.str.endsWith(url, '/') ? '' : '/';
-			s = url + param;
-		}
-		return s || false;
-	};
 
 	//parse url
 	var _cacheParsedUrl = {};
 	var _urlParts = ['protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'];
-	this.parseUrl = function (s, sPart) {
+	url.parseUrl = function (s, sPart) {
 		if (!_.isString(s) || !_.str.isFullUrl(s)) return false;
 		if (sPart && (!_.isString(sPart) || !_.include(_urlParts, sPart))) return false;
 		var url = _.str.trim(s);
@@ -144,7 +111,7 @@ _ext.url._ini = function () {
 		}
 		return sPart ? result[sPart] : result;
 	};
-	this.composeUrl = function (o) {
+	url.composeUrl = function (o) {
 		if (!_.isPlainObject(o)) return false;
 		var host = o.host || o.hostname;
 		var fnCheckValue = function (sKey) {return _.isString(sKey) && _.str.trim(sKey);};
@@ -182,13 +149,13 @@ _ext.url._ini = function () {
 	};
 
 	//hash processing
-	this.removeHashFromUrl = function (s) {
+	url.removeHashFromUrl = function (s) {
 		return _.isString(s) && s.split('#')[0];
 	};
-	this.getHashFromUrl = function (s) {
+	url.getHashFromUrl = function (s) {
 		return _.url.parseUrl(s, 'hash');
 	};
-	this.getHashFromHref = function (s) {
+	url.getHashFromHref = function (s) {
 		var result = false;
 		if (_.isString(s)) {
 			var iHashPos = s.indexOf('#');
@@ -196,7 +163,7 @@ _ext.url._ini = function () {
 		}
 		return result;
 	};
-	this.getHashFromLink = function (e) {
+	url.getHashFromLink = function (e) {
 		var result = false;
 		if (_.isElement(e) && e.tagName.toLowerCase() === 'a') {
 			result = e.getAttribute('href', 2);
@@ -206,10 +173,11 @@ _ext.url._ini = function () {
 	};
 
 	//resource loading
-	this.open = function (s) {return _.isString(s) ? window.open(s) : false;};
-	this.go = function (s) {return _.isString(s) ? (location.href = s) : false;};
-	this.refresh = this.reload = function () {location.reload();};
-	this.preloadImg = function (s) {
+	url.open = function (s) {return _.isString(s) ? window.open(s) : false;};
+	url.go = function (s) {return _.isString(s) ? (location.href = s) : false;};
+	url.refresh = url.reload = function () {location.reload();};
+	url.preloadImg = function (s) {
+		//todo: check if preloaded
 		var img = _.isString(s) ? new Image() : false;
 		if (img) {
 			var id = _.uniqueId('preloadImg');
@@ -219,26 +187,13 @@ _ext.url._ini = function () {
 		}
 		return img;
 	};
-	this.preload = function (/** s, fn **/) {  //to be done
-		//...
-	};
 
 	//check url
-	this.isHash = _.str.isHash;
-	this.stripHash = _.str.stripHash;
-	this.isFullUrl = _.str.isFullUrl;
-	this.isAbsolutePath = _.str.isAbsolutePath;
-	this.toFullUrl = function (s) {  //obviously incomplete
-		s = _.isString(s) ? s : '';
-		return s || false;
-	};
-};
+//	url.isHash = _.str.isHash;
+//	url.stripHash = _.str.stripHash;
+//	url.isFullUrl = _.str.isFullUrl;
+//	url.isAbsolutePath = _.str.isAbsolutePath;
 
-//output
-if (root._) {
-	_.ext = _.ext || {};
-	_.extend(_.ext, _ext);
-}
-
-//----------------------------------------
-}(window));
+	//exports
+	_ext.url = url
+}(root, _ext)

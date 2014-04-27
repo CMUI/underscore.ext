@@ -1,9 +1,6 @@
-/*global _ */
-/*jshint bitwise:true, eqeqeq:true, forin:true, immed:true, latedef:true, newcap:true, undef:true,
-	trailing:true, smarttabs:true, sub:true, browser:true, devel:true, maxlen:150 */
-////////////////////  fn  ////////////////////
+
+////////////////////  str  ////////////////////
 (function () {
-//----------------------------------------
 var _str = {};
 
 //price
@@ -124,9 +121,8 @@ _str.fullWidthLength = function (s) {
 };
 
 //output
-if (window._ && _.str) {
+if (_ && _.str) {
 	_.extend(_.str, _str);
 }
 
-//----------------------------------------
 }());
