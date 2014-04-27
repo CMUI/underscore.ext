@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Underscore.ext Test</title>
-<style type="text/css">
-/**  **/
-
+<meta charset="UTF-8">
+<title>Unit Test - Underscore.ext</title>
+<link rel="stylesheet" href="deps/mocha.css">
+<style>
+	body > header {
+		padding: 15px 300px 0 30px;
+		font: 200 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+	body > header h1 {
+		margin: 0;
+		font-size: 28px;
+		font-weight: 400;
+	}
+	body > header p {
+		margin: 0;
+	}
+	body > header a {
+		color: #4183C4;
+	}
 </style>
 </head>
 <body>
-<h1>Underscore.ext Test</h1>
+<header>
+	<h1>Unit Test - Underscore.ext</h1>
+	<p><a href="https://github.com/CMUI/underscore.ext">View on GitHub</a></p>
+</header>
+<div id="mocha"></div>
 <!-- deps -->
 <script src="../deps/underscore.min.js"></script>
 <script src="../deps/zepto.min.js"></script>
-<!-- lib -->
+<!-- test fw -->
+<script src="deps/mocha.js"></script>
+<script src="deps/chai.js"></script>
+<script>mocha.setup('bdd');expect = chai.expect</script>
+<!-- modules -->
 <script src="../src/core.js"></script>
-<script src="../src/str.js"></script>
+<script src="../src/exports.js"></script>
 <script src="../src/url.js"></script>
-<script src="../src/event.js"></script>
-<script src="../src/template.js"></script>
+<script src="../src/_output.js"></script>
+<!-- unit test -->
+<script src="url.js"></script>
+<!-- run test -->
+<script>mocha.run()</script>
 </body>
 </html>
