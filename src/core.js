@@ -1,9 +1,9 @@
 
 ////////////////////  core  ////////////////////
-var root = this
+var root = root || window
 var _ = root._
 var $ = root.Zepto || root.jQuery || root.$
-var _ext = {};
+var _ext = {}
 
 //config
 /*
