@@ -15,3 +15,5 @@ $RECYCLE.BIN/
 .idea
 
 *.zip
+*.gz
+/dist/
