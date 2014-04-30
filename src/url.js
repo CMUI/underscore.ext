@@ -13,11 +13,6 @@ void function (window, _ext) {
 	var loc = window.location
 
 	//url param processing
-	function _getQuery() {
-		return loc.search.slice(1).replace(/&+$/, '')
-	}
-	var _query = _getQuery()
-	var _cacheParam = null
 	url.parseQuery = function(query) {
 		var data = {}
 		if (query && _.isString(query)) {
@@ -33,19 +28,29 @@ void function (window, _ext) {
 		}
 		return data
 	}
+
+	var _query, _cacheParam = null
+	function _getQuery() {
+		return loc.search.slice(1)
+	}
 	url.getParam = function (s) {
 		if (!s || !_.isString(s)) return false
-		var query = _getQuery()
-		if (query !== _query) {
-			_cacheParam = null
-			_query = query
+		if (!_query) {	//first run
+			_query = _getQuery()
+		} else {
+			var currentQuery = _getQuery()
+			if (currentQuery !== _query) {
+				_cacheParam = null	//clear cache to enforce re-parse
+				_query = currentQuery
+			}
 		}
 		if (!_cacheParam) {
-			_cacheParam = this.parseQuery(query)
+			_cacheParam = this.parseQuery(_query)
 		}
 		return _cacheParam[s.toLowerCase()]
 	}
-	url.appendParam = function (url, param) {	//append param to (sUrl || current url)
+
+	url.appendParam = function (url, param) {	//append param to (url || current url)
 		var s = ''
 		url = _.isString(url) ? url : ''
 		url = _.url.removeHashFromUrl(url)
