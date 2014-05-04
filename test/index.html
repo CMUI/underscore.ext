@@ -31,18 +31,18 @@
 <!-- deps -->
 <script src="../deps/underscore.min.js"></script>
 <script src="../deps/zepto.min.js"></script>
-<!-- test fw -->
+<!-- test framework -->
 <script src="deps/mocha.js"></script>
 <script src="deps/chai.js"></script>
 <script>mocha.setup('bdd');expect = chai.expect</script>
 <!-- modules -->
-<script src="../src/core.js"></script>
+<script src="../src/adapter-dev/_var.js"></script>
 <script src="../src/exports.js"></script>
 <script src="../src/url.js"></script>
-<script src="../src/_output.js"></script>
-<!-- unit test -->
+<script src="../src/adapter-dev/_output.js"></script>
+<!-- test case -->
 <script src="url.js"></script>
-<!-- run test -->
+<!-- init -->
 <script>mocha.run()</script>
 </body>
 </html>

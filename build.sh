@@ -1,9 +1,9 @@
+#!/bin/sh
 cat \
-	src/_intro.js \
-	src/core.js \
+	src/adapter-normal/_intro.js \
+	src/adapter-normal/_var.js \
 	src/exports.js \
 	src/url.js \
-	src/_output.js \
-	src/_outro.js \
+	src/adapter-normal/_outro.js \
 	> \
 	dist/underscore.ext.js
