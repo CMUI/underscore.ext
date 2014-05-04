@@ -209,4 +209,5 @@ void function (window, _ext) {
 
 	//exports
 	_ext.url = url
+	_ext.exports('url')
 }(root, _ext)
