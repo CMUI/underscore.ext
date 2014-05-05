@@ -1,5 +1,8 @@
 
 ////////////////////  core  ////////////////////
+//namespace
+var _ext = {}
+
 void function (window, _ext) {
 	'use strict'
 
