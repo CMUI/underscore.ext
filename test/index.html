@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Unit Test - Underscore.ext</title>
+<title>UT (Dev) - Underscore.ext</title>
 <link rel="stylesheet" href="deps/mocha.css">
 <style>
 	body > header {
@@ -24,7 +24,7 @@
 </head>
 <body>
 <header>
-	<h1>Unit Test - Underscore.ext</h1>
+	<h1>UT (Dev) - Underscore.ext</h1>
 	<p><a href="https://github.com/CMUI/underscore.ext">View on GitHub</a></p>
 </header>
 <div id="mocha"></div>
@@ -34,14 +34,13 @@
 <!-- test framework -->
 <script src="deps/mocha.js"></script>
 <script src="deps/chai.js"></script>
-<script>mocha.setup('bdd');expect = chai.expect</script>
-<!-- modules -->
+<script>mocha.setup('bdd'); expect = chai.expect;</script>
+<!-- source code -->
 <script src="../src/adapter-dev/_var.js"></script>
-<script src="../src/exports.js"></script>
+<script src="../src/core.js"></script>
 <script src="../src/url.js"></script>
-<script src="../src/adapter-dev/_output.js"></script>
 <!-- test case -->
-<script src="url.js"></script>
+<script src="test-url.js"></script>
 <!-- init -->
 <script>mocha.run()</script>
 </body>
