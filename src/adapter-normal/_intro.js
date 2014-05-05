@@ -1,5 +1,5 @@
 /**
  * underscore.ext
  */
-void function (root, undefined) {
+void function (window, undefined) {
 	'use strict'

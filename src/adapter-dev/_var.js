@@ -1,8 +1,7 @@
 
 ////////////////////  var  ////////////////////
-var root = window
-var _ = root._
-var $ = root.Zepto || root.jQuery || root.$
+var _ = window._
+var $ = window.Zepto || window.jQuery || window.$
 
 //namespace
 var _ext = {}
