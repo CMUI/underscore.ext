@@ -19,10 +19,10 @@ void function (window, _ext) {
 		//util
 		function checkKey(key) {
 			if (_[key]) {
-				console.warn('_ already has key: ' + key)
-				return false
-			} else {
+				if (!_.include(['template', 'str'], key)) console.warn('_ already has key: ' + key)
 				return true
+			} else {
+				return false
 			}
 		}
 		function exportModule(key) {
@@ -32,13 +32,13 @@ void function (window, _ext) {
 					checkKey(i)
 					_[i] = n
 				})
-			} else if (key === 'template') {
-				//_ext.template.xxx => _.template.xxx
-				_.extend(_.template, _ns.template)
 			} else {
-				//_ext.foo.xxx => _.foo.xxx
-				checkKey(key)
-				_[key] = _ns[key]
+				//_ext.{key}.xxx => _.{key}.xxx
+				if (checkKey(key)) {
+					_.extend(_[key], _ns[key])
+				} else {
+					_[key] = _ns[key]
+				}
 			}
 		}
 	}
