@@ -14,7 +14,6 @@ void function (window, _ext) {
 	 */
 	_ext.exports = function (key, apiSet) {
 		if (!key || !_.isString(key) || !apiSet || !_.isObject(apiSet)) return false
-//		var _ns = this
 		if (key === 'root') {
 			//{apiSet}.xxx => _.xxx
 			_.each(apiSet, function (n, i) {
