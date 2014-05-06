@@ -31,7 +31,11 @@ void function (window, _ext) {
 
 		function checkKey(key) {
 			if (_[key]) {
-				if (!(key === 'template' || key === 'str')) console.warn('_ already has key: ' + key)
+				//warn if going to modify existed key
+				var knownKeysToBeExtended = ['template', 'str']
+				if (!_.include(knownKeysToBeExtended, key)) {
+					console.warn('_ already has key: ' + key)
+				}
 				return true
 			} else {
 				return false
