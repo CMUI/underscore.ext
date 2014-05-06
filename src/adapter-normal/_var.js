@@ -1,10 +1,7 @@
 
 ////////////////////  var  ////////////////////
-var _ = root._
-var $ = root.Zepto || root.jQuery || root.$
+var _ = window._
+var $ = window.Zepto || window.jQuery || window.$
 
 //check dependency
 if (!_ || !$) return false
-
-//namespace
-var _ext = {}

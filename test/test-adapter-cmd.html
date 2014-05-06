@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UT (CMD) - Underscore.ext</title>
+<link rel="stylesheet" href="deps/mocha.css">
+<style>
+body > header {
+	padding: 15px 300px 0 30px;
+	font: 200 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body > header h1 {
+	margin: 0;
+	font-size: 28px;
+	font-weight: 400;
+}
+body > header p {
+	margin: 0;
+}
+body > header a {
+	color: #4183C4;
+}
+</style>
+</head>
+<body>
+<header>
+	<h1>UT (CMD) - Underscore.ext</h1>
+	<p><a href="https://github.com/CMUI/underscore.ext">View on GitHub</a></p>
+</header>
+<div id="mocha"></div>
+<!-- test framework -->
+<script src="deps/mocha.js"></script>
+<script src="deps/chai.js"></script>
+<script>mocha.setup('bdd'); expect = chai.expect;</script>
+<!-- test case -->
+<script src="test-url.js"></script>
+<!-- cmd -->
+<script src="deps/sea.js"></script>
+<script>
+seajs.config({
+	alias: {
+		'underscore': '../deps/underscore.min.js',
+		'zepto': '../deps/zepto.min.js'
+	}
+})
+seajs.use('../dist/underscore.ext.cmd', function (_) {
+	window._ = window._ || _
+	mocha.run()
+})
+</script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 
-////////////////////  exports  ////////////////////
+////////////////////  core  ////////////////////
+//namespace
+var _ext = {}
+
 void function (window, _ext) {
 	'use strict'
 
@@ -40,4 +43,4 @@ void function (window, _ext) {
 		}
 	}
 
-}(root, _ext)
+}(window, _ext)
