@@ -208,6 +208,5 @@ void function (window, _ext) {
 //	url.isAbsolutePath = _.str.isAbsolutePath
 
 	//exports
-	_ext.url = url
-	_ext.exports('url')
+	_ext.exports('url', url)
 }(window, _ext)
