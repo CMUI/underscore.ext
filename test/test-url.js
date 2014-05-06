@@ -45,7 +45,7 @@ describe('URL', function () {
 		describe('_.url.getParam()', function () {
 			var _state = history.state || null
 			var _url = location.href
-			it('basic functionality', function () {
+			it('do basic functionality', function () {
 				var url
 				url = '?' + 'foo=1&bar=2&alice=&bob&chris=3'
 				history.replaceState(_state, null, url)

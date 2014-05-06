@@ -3,7 +3,7 @@
 void function (window, _ext) {
 	'use strict'
 
-	//ns
+	//namespace
 	var url = {}
 
 	//page type
