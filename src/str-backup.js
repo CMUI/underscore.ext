@@ -55,6 +55,5 @@ void function (window, _ext) {
 	}
 
 	//exports
-	_ext.str = str
-	_ext.exports('str')
+	_ext.exports('str', str)
 }(window, _ext)
