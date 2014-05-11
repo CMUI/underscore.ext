@@ -47,10 +47,11 @@ describe('Root', function () {
 
 	describe('_.$()', function () {
 		it('do basic functionality same as $()', function () {
-			var obj = _.$(document.getElementById('mocha'))
-			expect(obj).to.have.property('length')
+			var elem = document.getElementById('mocha')
+			var obj = _.$(elem)
+			expect(obj).to.deep.equal($(elem))
 		})
-		it('return directly if already $element', function () {
+		it('return directly if already $collection', function () {
 			var obj = $('#mocha')
 			expect(_.$(obj)).to.equal(obj)
 		})

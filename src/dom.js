@@ -6,16 +6,19 @@ void function (window, _ext) {
 	//namespace
 	var dom = {}
 
-	//shortcuts
+	//shortcuts for frequently-used elements
 	var jWin = dom.jWin = $(window)
 	var jDoc = dom.jDoc = $(document.documentElement)
-
-	$(_.bind(function () {  //document.body maybe not ready when this js running.
-		this.jBody = $(document.body)
-	}, dom))
+	var jBody = dom.jBody = document.body ? $(document.body) : null
+	//get `document.body` later
+	if (!jBody) {
+		$(_.bind(function () {
+			this.jBody = $(document.body)
+		}, dom))
+	}
 
 	//methods
-	this.is$Element = function (o) {
+	dom.is$Element = function (o) {
 		if (!o || !_.isObject(o)) return false
 		var result = false
 		if ('__proto__' in o) {
