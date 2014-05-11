@@ -31,10 +31,14 @@
 <!-- deps -->
 <script src="../deps/underscore.min.js"></script>
 <script src="../deps/zepto.min.js"></script>
-<!-- test framework -->
+<!-- testing framework -->
 <script src="deps/mocha.js"></script>
 <script src="deps/chai.js"></script>
-<script>mocha.setup('bdd'); expect = chai.expect;</script>
+<script>
+mocha.setup('bdd')
+mocha.checkLeaks()
+var expect = chai.expect
+</script>
 <!-- source code -->
 <script src="../src/adapter-dev/_var.js"></script>
 <script src="../src/core.js"></script>
@@ -42,7 +46,7 @@
 <script src="../src/str.js"></script>
 <script src="../src/root.js"></script>
 <script src="../src/url.js"></script>
-<!-- test case -->
+<!-- test-case -->
 <script src="test-str-backup.js"></script>
 <script src="test-str.js"></script>
 <script src="test-root.js"></script>

@@ -45,6 +45,9 @@ describe('URL', function () {
 		describe('_.url.getParam()', function () {
 			var _state = history.state || null
 			var _url = location.href
+			after(function () {
+				history.replaceState(_state, null, _url)
+			})
 			it('do basic functionality', function () {
 				var url
 				url = '?' + 'foo=1&bar=2&alice=&bob&chris=3'
@@ -87,9 +90,6 @@ describe('URL', function () {
 				expect(_.url.getParam('foo')).to.equal(' ')
 				expect(_.url.getParam('bar')).to.equal('+')
 				expect(_.url.getParam('blah=blah')).to.equal('1')
-			})
-			it('(restore url)', function () {
-				history.replaceState(_state, null, _url)
 			})
 		})
 	})
