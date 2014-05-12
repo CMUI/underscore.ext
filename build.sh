@@ -9,6 +9,7 @@ cat \
 	src/str.js \
 	src/root.js \
 	src/url.js \
+	src/dom.js \
 	src/adapter-normal/_outro.js \
 	> \
 	dist/underscore.ext.js
@@ -22,6 +23,7 @@ cat \
 	src/str.js \
 	src/root.js \
 	src/url.js \
+	src/dom.js \
 	src/adapter-cmd/_outro.js \
 	> \
 	dist/underscore.ext.cmd.js
