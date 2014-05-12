@@ -21,6 +21,7 @@ describe('DOM', function () {
 				}
 			})
 			it('be a $collection of `document.body` object - async', function (done) {
+				//to run this test, move all <script> tags to <head> first
 				$(function() {
 					expect(_.dom.is$Element(_.dom.jBody)).to.be.true
 					expect(_.dom.jBody[0]).to.equal(document.body)
@@ -57,9 +58,7 @@ describe('DOM', function () {
 				expect(_.dom.is$Element(arg)).to.be.false
 			})
 		})
-
 	})
-
 
 })
 
