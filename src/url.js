@@ -201,11 +201,11 @@ void function (window, _ext) {
 		return img
 	}
 
-	//check url
-//	url.isHash = _.str.isHash
-//	url.stripHash = _.str.stripHash
-//	url.isFullUrl = _.str.isFullUrl
-//	url.isAbsolutePath = _.str.isAbsolutePath
+	//aliases
+	url.isHash = _.str.isHash
+	url.stripHash = _.str.stripHash
+	url.isFullUrl = _.str.isFullUrl
+	url.isAbsolutePath = _.str.isAbsolutePath
 
 	//exports
 	_ext.exports('url', url)

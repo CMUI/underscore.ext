@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# prepare directory
+mkdir dist
+
 # normal release
 cat \
 	src/adapter-normal/_intro.js \
