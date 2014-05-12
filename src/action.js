@@ -9,7 +9,8 @@ void function (window, _ext) {
 	var SELECTOR = '[data-action]'
 	var _actionList = {}
 	function _bind() {
-		void (_.dom.jBody || _.dom.jDoc).on('click', SELECTOR, function (ev) {
+		var $wrapper = _.dom.jBody || _.dom.jDoc
+		$wrapper.on('click', SELECTOR, function (ev) {
 			ev.preventDefault()
 			var elem = this
 			var $elem = _.$(elem)
@@ -18,10 +19,10 @@ void function (window, _ext) {
 			if (!action) {
 				console.warn('No action assigned!')
 			} else {
-				action = _.str.ltrim('!#')
+				action = _.str.stripHash(action)
 				if (!action || action === 'none') {
 					console.info('Empty action. Do nothing.')
-				} else if (_.str.isHash(s)) {
+				} else {
 					_handle(action, elem)
 				}
 			}
@@ -37,9 +38,12 @@ void function (window, _ext) {
 		}
 	}
 
+	//debug
+	action._actionList = _actionList
+
 	//api
 	action.extend = function (o) {
-		if (_.isObject(o)) {
+		if (_.isPlainObject(o)) {
 			_.extend(_actionList, o)
 		}
 	}

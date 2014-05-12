@@ -1,4 +1,4 @@
-describe('Root', function () {
+describe('(Root)', function () {
 	describe('_.isPlainObject()', function () {
 		it('be alias of $\'s same api', function () {
 			expect($.isPlainObject === _.isPlainObject).to.be.true
