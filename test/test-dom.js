@@ -25,7 +25,7 @@ describe('DOM', function () {
 				//however, this test case cannot be really reached completely,
 				//cuz `mocha.run()` must be in <body>.
 				$(function() {
-					expect(_.dom.is$Element(_.dom.jBody)).to.be.true
+					expect(_.dom.jBody).ok
 					expect(_.dom.jBody[0]).to.equal(document.body)
 					done()
 				})

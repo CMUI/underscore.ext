@@ -9,12 +9,36 @@ void function (window, _ext) {
 	//shortcuts for frequently-used elements
 	var jWin = dom.jWin = $(window)
 	var jDoc = dom.jDoc = $(document.documentElement)
-	var jBody = dom.jBody = document.body ? $(document.body) : null
-	//get `document.body` later
+
+	//getting `document.body` is a little complicated
+	//on firefox, there's a obvious latency between `document.readyState` becoming `interactive`
+	//and `DOMContentLoaded` event
+	var jBody
+	var isBodyReady = false
+
+	function _tryGetBody() {
+		if (isBodyReady) return
+		var body = document.body
+		if (body) {
+			jBody = dom.jBody = $(body)
+			isBodyReady = true
+			document.removeEventListener('readystatechange', checkReadyState, false)
+		}
+	}
+	function checkReadyState() {
+		if (/interactive|loaded|complete/.test(document.readyState)) {
+			_tryGetBody()
+		}
+	}
+	//try getting `document.body` - sync
+	_tryGetBody()
+
+	//try getting `document.body` - async
 	if (!jBody) {
-		$(_.bind(function () {
-			this.jBody = $(document.body)
-		}, dom))
+		document.addEventListener('readystatechange', checkReadyState, false)
+		$(function () {
+			_tryGetBody()
+		})
 	}
 
 	//methods
