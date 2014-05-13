@@ -7,20 +7,20 @@ void function (window, _ext) {
 	var dom = {}
 
 	//shortcuts for frequently-used elements
-	var jWin = dom.jWin = $(window)
-	var jDoc = dom.jDoc = $(document.documentElement)
+	dom.$win = $(window)
+	dom.$doc = $(document.documentElement)
 
 	//getting `document.body` is a little complicated
 	//on firefox, there's a obvious latency between `document.readyState` becoming `interactive`
 	//and `DOMContentLoaded` event
-	var jBody
+	var $body
 	var isBodyReady = false
 
 	function _tryGetBody() {
 		if (isBodyReady) return
 		var body = document.body
 		if (body) {
-			jBody = dom.jBody = $(body)
+			$body = dom.$body = $(body)
 			isBodyReady = true
 			document.removeEventListener('readystatechange', checkReadyState, false)
 		}
@@ -34,7 +34,7 @@ void function (window, _ext) {
 	_tryGetBody()
 
 	//try getting `document.body` - async
-	if (!jBody) {
+	if (!$body) {
 		document.addEventListener('readystatechange', checkReadyState, false)
 		$(function () {
 			_tryGetBody()
