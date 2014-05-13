@@ -31,7 +31,7 @@ void function (window, _ext) {
 	var SELECTOR = '[data-action]'
 	var _actionList = {}
 	function _bind() {
-		var $wrapper = _.dom.jBody || _.dom.jDoc
+		var $wrapper = _.dom.$body || _.dom.$doc
 		$wrapper.on('click', SELECTOR, function (ev) {
 			ev.preventDefault()
 			var elem = this

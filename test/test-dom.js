@@ -1,32 +1,32 @@
 describe('DOM', function () {
 	describe('Shortcuts', function () {
-		describe('_.dom.jWin', function () {
+		describe('_.dom.$win', function () {
 			it('be $collection of `window` object', function () {
-				expect(_.dom.is$Element(_.dom.jWin)).to.be.true
-				expect(_.dom.jWin[0]).to.equal(window)
+				expect(_.dom.is$Element(_.dom.$win)).to.be.true
+				expect(_.dom.$win[0]).to.equal(window)
 			})
 		})
-		describe('_.dom.jDoc', function () {
+		describe('_.dom.$doc', function () {
 			it('be a $collection of `document.documentElement` object', function () {
-				expect(_.dom.is$Element(_.dom.jDoc)).to.be.true
-				expect(_.dom.jDoc[0]).to.equal(document.documentElement)
-				expect(_.dom.jDoc[0].tagName.toUpperCase()).to.equal('HTML')
+				expect(_.dom.is$Element(_.dom.$doc)).to.be.true
+				expect(_.dom.$doc[0]).to.equal(document.documentElement)
+				expect(_.dom.$doc[0].tagName.toUpperCase()).to.equal('HTML')
 			})
 		})
-		describe('_.dom.jBody', function () {
+		describe('_.dom.$body', function () {
 			it('be a $collection of `document.body` object', function () {
-				if (_.dom.jBody) {
-					expect(_.dom.is$Element(_.dom.jBody)).to.be.true
-					expect(_.dom.jBody[0]).to.equal(document.body)
+				if (_.dom.$body) {
+					expect(_.dom.is$Element(_.dom.$body)).to.be.true
+					expect(_.dom.$body[0]).to.equal(document.body)
 				}
 			})
+			//to run this test, move all scripts (except mocha's init line) to <head>.
+			//however, this test case cannot be really reached completely,
+			//cuz `mocha.run()` must be in <body>.
 			it('be a $collection of `document.body` object - async', function (done) {
-				//to run this test, move all scripts (except mocha's init line) to <head>.
-				//however, this test case cannot be really reached completely,
-				//cuz `mocha.run()` must be in <body>.
 				$(function() {
-					expect(_.dom.jBody).ok
-					expect(_.dom.jBody[0]).to.equal(document.body)
+					expect(_.dom.is$Element(_.dom.$body)).to.be.true
+					expect(_.dom.$body[0]).to.equal(document.body)
 					done()
 				})
 			})
