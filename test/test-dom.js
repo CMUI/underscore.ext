@@ -21,9 +21,11 @@ describe('DOM', function () {
 				}
 			})
 			it('be a $collection of `document.body` object - async', function (done) {
-				//to run this test, move all <script> tags to <head> first
+				//to run this test, move all scripts (except mocha's init line) to <head>.
+				//however, this test case cannot be really reached completely,
+				//cuz `mocha.run()` must be in <body>.
 				$(function() {
-					expect(_.dom.is$Element(_.dom.jBody)).to.be.true
+					expect(_.dom.jBody).ok
 					expect(_.dom.jBody[0]).to.equal(document.body)
 					done()
 				})
