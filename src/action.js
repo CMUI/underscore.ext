@@ -60,9 +60,6 @@ void function (window, _ext) {
 		}
 	}
 
-	//debug
-	action._actionList = _actionList
-
 	//api
 	action.extend = function (actionSet) {
 		if (_.isPlainObject(actionSet)) {
@@ -77,6 +74,9 @@ void function (window, _ext) {
 
 	//init
 	_bind()
+
+	//exports for unit test
+	action._actionList = _actionList
 
 	//exports
 	_ext.exports('action', action)
