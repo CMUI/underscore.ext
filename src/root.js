@@ -8,8 +8,8 @@ void function (window, _ext) {
 			var result
 			if (_.isElement(input)) {
 				result = input.__$__ = input.__$__ || $(input)
-//			} else if (_.dom.is$Element(input)) {
-//				result = input
+			} else if (_.dom.is$Element(input)) {
+				result = input
 			} else {
 				result = $(input)
 			}
