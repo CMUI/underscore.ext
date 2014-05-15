@@ -11,6 +11,7 @@ cat \
 	src/str-backup.js \
 	src/str.js \
 	src/root.js \
+	src/ua.js \
 	src/url.js \
 	src/dom.js \
 	src/adapter-normal/_outro.js \
@@ -25,6 +26,7 @@ cat \
 	src/str-backup.js \
 	src/str.js \
 	src/root.js \
+	src/ua.js \
 	src/url.js \
 	src/dom.js \
 	src/adapter-cmd/_outro.js \
