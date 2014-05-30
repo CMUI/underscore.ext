@@ -1,12 +1,13 @@
 #!/bin/sh
 
 # prepare directory
+# todo: don't make if it already existed
 mkdir dist
 
 # normal release
 cat \
-	src/adapter-normal/_intro.js \
-	src/adapter-normal/_var.js \
+	src/adapter-trad/_intro.js \
+	src/adapter-trad/_var.js \
 	src/core.js \
 	src/str-backup.js \
 	src/str.js \
@@ -14,7 +15,7 @@ cat \
 	src/ua.js \
 	src/url.js \
 	src/dom.js \
-	src/adapter-normal/_outro.js \
+	src/adapter-trad/_outro.js \
 	> \
 	dist/underscore.ext.js
 
@@ -32,3 +33,5 @@ cat \
 	src/adapter-cmd/_outro.js \
 	> \
 	dist/underscore.ext.cmd.js
+
+# todo: amd release, or an universal module release
