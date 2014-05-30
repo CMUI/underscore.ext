@@ -39,7 +39,7 @@ void function (window, _ext) {
 		if (str == null) return ''
 		if (!characters && nativeTrim) return nativeTrim.call(str)
 		characters = defaultToWhiteSpace(characters)
-		return String(str).replace(new RegExp('\^' + characters + '+|' + characters + '+$', 'g'), '')
+		return String(str).replace(new RegExp('^' + characters + '+|' + characters + '+$', 'g'), '')
 	}
 	str.ltrim = function (str, characters) {
 		if (str == null) return ''

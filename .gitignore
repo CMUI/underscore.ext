@@ -17,3 +17,6 @@ $RECYCLE.BIN/
 *.zip
 *.gz
 dist/
+
+*.sh
+!build.sh
