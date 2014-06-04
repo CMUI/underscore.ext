@@ -10,7 +10,10 @@ void function (window, _ext) {
 	var style = document.documentElement.style
 	ua.isWebKit = 'webkitTransform' in style
 	ua.isMoz = 'MozTransform' in style
-	ua.isTouchDevice = 'TouchEvent' in window
+	//we want it to work with chrome's touch device simulator,
+	//so we don't use `document.createTouch` to detect.
+	ua.isTouchDevice = ('ontouchstart' in window) && ('ontouchmove' in window) &&
+			('ontouchend' in window)
 
 	//detect by ua string
 	var str = ua.str = navigator.userAgent

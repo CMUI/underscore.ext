@@ -13,9 +13,13 @@ describe('UA', function () {
 		})
 		describe('_.ua.isTouchDevice', function () {
 			it('mean element has `touch-` event', function () {
-				expect(!!_.ua.isTouchDevice).to.equal('ontouchstart' in window)
-				expect(!!_.ua.isTouchDevice).to.equal('ontouchmove' in window)
-				expect(!!_.ua.isTouchDevice).to.equal('ontouchend' in window)
+				//this test case is based on the idea of feature detection.
+				if (_.ua.isTouchDevice) {
+					expect('TouchEvent' in window).to.be.true
+					expect('ontouchstart' in window).to.be.true
+					expect('ontouchmove' in window).to.be.true
+					expect('ontouchend' in window).to.be.true
+				}
 			})
 		})
 	})
