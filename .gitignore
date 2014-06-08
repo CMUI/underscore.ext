@@ -16,7 +16,12 @@ $RECYCLE.BIN/
 
 *.zip
 *.gz
-dist/
+dist/*.js
+!dist/underscore.ext.js
 
 *.sh
 !build.sh
+
+package.json
+node_modules/
+bower_components/
