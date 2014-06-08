@@ -1,0 +1,28 @@
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{json}]
+indent_style = space
+indent_size = 2
+
+[**.{js,json,html}]
+indent_style = tab
+indent_size = tab
+tab_width = 4
+
+[**.{js}]
+quote_type = single
+
+[**.{html,css}]
+quote_type = double
+
+[**.{js,css}]
+curly_bracket_next_line = false

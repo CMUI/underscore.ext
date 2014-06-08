@@ -1,5 +1,5 @@
 # Underscore.ext
 
-JavaScript utilities for mobile web development, base on `_` and `$`. Lightweight (~5kB), designed for mobile web.
+Lightweight JavaScript utilities for mobile web, based on Underscore and Zepto.
 
-专注 Mobile Web 开发的 Javascript 工具库，基于 Underscore 和 Zepto/jQuery。体积小巧，仅 5kB。
+专注移动端的 Javascript 工具库，基于 Underscore 和 Zepto。
