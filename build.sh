@@ -15,6 +15,7 @@ cat \
 	src/ua.js \
 	src/url.js \
 	src/dom.js \
+	src/action.js \
 	src/adapter-trad/_outro.js \
 	> \
 	dist/underscore.ext.js
@@ -30,6 +31,7 @@ cat \
 	src/ua.js \
 	src/url.js \
 	src/dom.js \
+	src/action.js \
 	src/adapter-cmd/_outro.js \
 	> \
 	dist/underscore.ext.cmd.js
