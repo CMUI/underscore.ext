@@ -16,7 +16,7 @@ void function (window, _ext) {
 			('ontouchend' in window)
 
 	//detect by ua string
-	var str = ua.str = navigator.userAgent
+	ua.str = navigator.userAgent
 
 	function __detect(ua) {
 		var s = ua.str.toLowerCase()
@@ -56,17 +56,20 @@ void function (window, _ext) {
 		return ua
 	}
 
+	//todo: detect size and features of screen
+	/*
 	function __detectScreen(ua) {
-		//todo
 		return ua
 	}
+	*/
 
 	//init
 	__detect(ua)
-	__detectScreen(ua)
+	//__detectScreen(ua)
 
 	//exports for unit test
 	ua.__detect = __detect
+	//ua.__detectScreen = __detectScreen
 
 	//exports
 	_ext.exports('ua', ua)
