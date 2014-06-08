@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>UT (CMD) - Underscore.ext</title>
-<link rel="stylesheet" href="deps/mocha.css">
+<link rel="stylesheet" href="../bower_components/mocha/mocha.css">
 <style>
 body > header {
 	padding: 15px 300px 0 30px;
@@ -28,19 +28,29 @@ body > header a {
 	<p><a href="https://github.com/CMUI/underscore.ext">View on GitHub</a></p>
 </header>
 <div id="mocha"></div>
-<!-- test framework -->
-<script src="deps/mocha.js"></script>
-<script src="deps/chai.js"></script>
-<script>mocha.setup('bdd'); expect = chai.expect;</script>
-<!-- test case -->
+<!-- testing framework -->
+<script src="../bower_components/mocha/mocha.js"></script>
+<script src="../bower_components/chai/chai.js"></script>
+<script>
+mocha.setup('bdd')
+mocha.checkLeaks()
+var expect = chai.expect
+</script>
+<!-- test-case -->
+<script src="test-str-backup.js"></script>
+<script src="test-str.js"></script>
+<script src="test-root.js"></script>
+<script src="test-ua.js"></script>
 <script src="test-url.js"></script>
+<script src="test-dom.js"></script>
+<script src="test-action.js"></script>
 <!-- cmd -->
-<script src="deps/sea.js"></script>
+<script src="../bower_components/seajs/sea-debug.js"></script>
 <script>
 seajs.config({
 	alias: {
-		'underscore': '../deps/underscore.min.js',
-		'zepto': '../deps/zepto.min.js'
+		'underscore': '../bower_components/underscore/underscore.js',
+		'zepto': '../bower_components/zepto/zepto.js'
 	}
 })
 seajs.use('../dist/underscore.ext.cmd', function (_) {

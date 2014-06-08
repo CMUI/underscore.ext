@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>UT (Normal) - Underscore.ext</title>
-<link rel="stylesheet" href="deps/mocha.css">
+<title>UT (Trad) - Underscore.ext</title>
+<link rel="stylesheet" href="../bower_components/mocha/mocha.css">
 <style>
 body > header {
 	padding: 15px 300px 0 30px;
@@ -24,21 +24,31 @@ body > header a {
 </head>
 <body>
 <header>
-	<h1>UT (Normal) - Underscore.ext</h1>
+	<h1>UT (Trad) - Underscore.ext</h1>
 	<p><a href="https://github.com/CMUI/underscore.ext">View on GitHub</a></p>
 </header>
 <div id="mocha"></div>
 <!-- deps -->
-<script src="../deps/underscore.min.js"></script>
-<script src="../deps/zepto.min.js"></script>
-<!-- test framework -->
-<script src="deps/mocha.js"></script>
-<script src="deps/chai.js"></script>
-<script>mocha.setup('bdd'); expect = chai.expect;</script>
-<!-- normal package -->
+<script src="../bower_components/underscore/underscore.js"></script>
+<script src="../bower_components/zepto/zepto.js"></script>
+<!-- testing framework -->
+<script src="../bower_components/mocha/mocha.js"></script>
+<script src="../bower_components/chai/chai.js"></script>
+<script>
+mocha.setup('bdd')
+mocha.checkLeaks()
+var expect = chai.expect
+</script>
+<!-- traditional package -->
 <script src="../dist/underscore.ext.js"></script>
-<!-- test case -->
+<!-- test-case -->
+<script src="test-str-backup.js"></script>
+<script src="test-str.js"></script>
+<script src="test-root.js"></script>
+<script src="test-ua.js"></script>
 <script src="test-url.js"></script>
+<script src="test-dom.js"></script>
+<script src="test-action.js"></script>
 <!-- init -->
 <script>mocha.run()</script>
 </body>

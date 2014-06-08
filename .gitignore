@@ -14,14 +14,14 @@ $RECYCLE.BIN/
 .svn
 .idea
 
+node_modules/
+bower_components/
+
 *.zip
 *.gz
+
 dist/*.js
 !dist/underscore.ext.js
 
 *.sh
 !build.sh
-
-package.json
-node_modules/
-bower_components/
