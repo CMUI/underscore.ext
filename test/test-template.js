@@ -35,9 +35,10 @@ describe('Template', function () {
 		'</ul>'
 	].join('\n')
 	
-	//ref
-	var _cacheTemplate = _.template._cacheTemplate
-	var _cacheCompiledTemplate = _.template._cacheCompiledTemplate
+	//reference to internal caches
+	//notice: if re-assign these vars, reference will loose
+	var _cacheTemplate = _.template.__cacheTemplate
+	var _cacheCompiledTemplate = _.template.__cacheCompiledTemplate
 
 	//dummy script elements
 	var $elem1
@@ -70,6 +71,54 @@ describe('Template', function () {
 	afterEach(function () {
 		clearCodeCache()
 		clearCompileCache()
+	})
+
+	describe('Util', function () {
+		describe('_.template.__isTemplateCode()', function () {
+			it('do basic functionality', function () {
+				expect(_.template.__isTemplateCode(templateCode1)).to.be.true
+				expect(_.template.__isTemplateCode(templateCode2)).to.be.true
+
+				var code
+				code = '<%= data %>'
+				expect(_.template.__isTemplateCode(code)).to.be.true
+
+				code = undefined
+				expect(_.template.__isTemplateCode(code)).to.be.false
+				code = ''
+				expect(_.template.__isTemplateCode(code)).to.be.false
+				code = null
+				expect(_.template.__isTemplateCode(code)).to.be.false
+				code = 'foobar'
+				expect(_.template.__isTemplateCode(code)).to.be.false
+				code = '<p>foobar</p>'
+				expect(_.template.__isTemplateCode(code)).to.be.false
+			})
+		})
+		describe('_.template.__stripCommentTag()', function () {
+			it('strip outta html comment tag', function () {
+				var code
+				code = '<!-- foobar -->'
+				expect(_.template.__stripCommentTag(code)).to.equal('foobar')
+				code = '<!-- <p>foobar</p> -->'
+				expect(_.template.__stripCommentTag(code)).to.equal('<p>foobar</p>')
+			})
+			it('return if not wrapped by comment tag', function () {
+				var code
+				code = undefined
+				expect(_.template.__stripCommentTag(code)).to.equal(String(code))
+				code = null
+				expect(_.template.__stripCommentTag(code)).to.equal(String(code))
+				code = ''
+				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				code = '<%= data %>'
+				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				code = 'foobar'
+				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				code = '<p>foobar</p>'
+				expect(_.template.__stripCommentTag(code)).to.equal(code)
+			})
+		})
 	})
 
 	describe('APIs', function () {
@@ -120,6 +169,7 @@ describe('Template', function () {
 				html1 = _.template.render(TEMPLATE_ID_1, templateData1)
 				expect(html1).to.be.equal(result1)
 				html2 = _.template.render(TEMPLATE_ID_2, templateData2)
+				//todo: need `_.str.clean()`
 				html2 = html2.replace(/\s+/g, ' ')
 				result2 = result2.replace(/\s+/g, ' ')
 				expect(html2).to.be.equal(result2)

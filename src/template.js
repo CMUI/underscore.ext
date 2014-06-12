@@ -2,44 +2,6 @@
 ////////////////////  template  ////////////////////
 //front-end template fetching, caching and rendering
 
-/*
-## basic usage (easier for dev)
-
-1-1. write template in a dummy script element with a id (prefixed with `template-`)
-<script type="text/template" id="template-my-classmates">
-<ul>
-	<% _.each(data, function(person) { %>
-		<li><%= person.name + ': ' + person.age %></li>
-	<% }) %>
-</ul>
-</script>
-
-1-2. prepare data
-var myClassmates = [
-	{name: 'Peter', age: '31'},
-	{name: 'Judy', age: '26'}
-]
-
-1-3. render template to get html code
-var html = _.template.render('my-classmates', myClassmates)
-
-## optimized usage (better for performance)
-
-2-1. don't touch html page, but add a template in js
-_.template.add('id', [
-	'<ul>',
-		'<% _.each(data, function(person) { %>',
-			'<li><%= person.name + \': \' + person.age %></li>',
-		'<% }) %>',
-	'</ul>'
-].join(''))
-
-2-2. prepare data (same as 1-2)
-
-2-3. render template to get html code (same as 1-3)
-
-*/
-
 void function (window, _ext) {
 	'use strict'
 
@@ -48,6 +10,9 @@ void function (window, _ext) {
 
 	//config
 	var _config = {
+		//for jedi 1.0
+		needStripCommentTag: true,
+
 		//compatible with ejs
 		interpolate : /<%-([\s\S]+?)%>/g,
 		escape      : /<%=([\s\S]+?)%>/g,
@@ -69,6 +34,14 @@ void function (window, _ext) {
 	function _toElementId(id) {
 		return _.str.startsWith(id, PREFIX_TEMPLATE) ? id : PREFIX_TEMPLATE + id
 	}
+	function _stripCommentTag(str) {
+		str = String(str)
+		if (_.str.startsWith(str, '<!' + '--') && _.str.endsWith(str, '-->')) {
+			str = str.replace(/^<!\-\-/, '').replace(/\-\->$/, '')
+			str = _.str.trim(str)
+		}
+		return str
+	}
 	//get template by id (of dummy script element in html)
 	function _getTemplateById(id) {
 		if (!id || !_.isString(id)) return false
@@ -78,26 +51,32 @@ void function (window, _ext) {
 		if (!elem) {
 			console.error('Element "#' + idElement + '" not found!')
 		} else {
-			var s = _.str.trim(elem.innerHTML)
-			//todo: strip comment and trim
-			if (s) {
-				result = s
-			} else {
+			var str = _.str.trim(elem.innerHTML)
+			if (!str) {
 				console.error('Element "#' + idElement + '" is empty!')
+			} else {
+				//strip html comment tag wrapping template code
+				if (_.templateSettings.needStripCommentTag) str = _stripCommentTag(str)
+				if (_isTemplateCode(str)) {
+					result = str
+				} else {
+					console.error('Template code in element "#' + idElement + '" is no valid!')
+				}
 			}
 		}
 		return result || false
 	}
 	function _isTemplateCode(s) {
 		var code = String(s)
-		return _.str.include(code, '<%') && /\bdata\b/.exec(code)
+		return _.str.include(code, '<%') && _.str.include(code, '%>') && /\bdata\b/.test(code)
 	}
 
 	//fn
-	function _updateSettings() {
+	function updateSettings() {
 		_.extend(_.templateSettings, _config)
 	}
 	function add(id, templateCode) {
+		//todo: accept second param as a function, to support pre-compiled template.
 		if (!id || !_.isString(id)) return false
 		id = _.str.stripHash(id)
 		var result
@@ -128,6 +107,8 @@ void function (window, _ext) {
 		}
 		var result
 		var templateId = _toTemplateId(id)
+
+		//todo: refactor: use recursion to simplify these codes
 		//search in _cacheCompiledTemplate
 		var fn = _cacheCompiledTemplate[templateId]
 		var templateCode = _cacheTemplate[templateId]
@@ -154,11 +135,13 @@ void function (window, _ext) {
 	}
 
 	//init
-	_updateSettings()
+	updateSettings()
 
 	//exports for unit test
-	template._cacheTemplate = _cacheTemplate
-	template._cacheCompiledTemplate = _cacheCompiledTemplate
+	template.__isTemplateCode = _isTemplateCode
+	template.__stripCommentTag = _stripCommentTag
+	template.__cacheTemplate = _cacheTemplate
+	template.__cacheCompiledTemplate = _cacheCompiledTemplate
 
 	//exports
 	_ext.exports('template', template)
