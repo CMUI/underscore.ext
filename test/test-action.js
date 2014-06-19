@@ -1,7 +1,7 @@
 describe('Action', function () {
 	var testKey = ''
 	var actionSet = {}
-	var _actionList = _.action._actionList
+	var _actionList = _.action.__actionList
 	beforeEach(function () {
 		testKey = ''
 	})
@@ -73,23 +73,23 @@ describe('Action', function () {
 		})
 	})
 	describe('APIs', function () {
-		describe('_.action.extend()', function () {
+		describe('_.action.add()', function () {
 			it('do basic functionality', function () {
 				expect(_actionList).to.be.deep.equal({})
 				actionSet = {
 					foo: function () {},
 					bar: function () {}
 				}
-				_.action.extend(actionSet)
+				_.action.add(actionSet)
 				expect(_actionList).to.be.deep.equal(actionSet)
 			})
 			it('do nothing if input other types', function () {
 				expect(_actionList).to.be.deep.equal({})
-				_.action.extend('foo')
+				_.action.add('foo')
 				expect(_actionList).to.be.deep.equal({})
-				_.action.extend(1)
+				_.action.add(1)
 				expect(_actionList).to.be.deep.equal({})
-				_.action.extend(new Date())
+				_.action.add(new Date())
 				expect(_actionList).to.be.deep.equal({})
 			})
 		})
@@ -104,7 +104,7 @@ describe('Action', function () {
 						testKey = 'test-bar'
 					}
 				}
-				_.action.extend(actionSet)
+				_.action.add(actionSet)
 				_.action.trigger('foo')
 				expect(testKey).to.equal('test-foo')
 				_.action.trigger('bar')
@@ -120,7 +120,7 @@ describe('Action', function () {
 						expect(this).to.equal(_)
 					}
 				}
-				_.action.extend(actionSet)
+				_.action.add(actionSet)
 				_.action.trigger('foo', context)
 				_.action.trigger('bar', _)
 			})

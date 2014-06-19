@@ -88,7 +88,7 @@ void function (window, _ext) {
 			result = _cacheTemplate[templateId] = templateCode
 		} else {
 			//todo: support `_.template.add(id)` to add from dummy script element
-			console.error('Missing template code to add to cache.')
+			//console.error('Missing template code to add to cache.')
 		}
 		return !!result
 	}
