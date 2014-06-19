@@ -19,11 +19,11 @@ void function (window, _ext) {
 			//get action
 			var actionName = $elem.data('action') || _.url.getHashFromLink(elem)
 			if (!actionName) {
-				console.warn('No action assigned!')
+				//console.warn('No action assigned!')
 			} else {
 				actionName = _.str.stripHash(actionName)
 				if (!actionName || actionName === 'none') {
-					console.info('Empty action. Do nothing.')
+					//console.info('Empty action. Do nothing.')
 				} else {
 					_handle(actionName, elem)
 				}
@@ -33,10 +33,11 @@ void function (window, _ext) {
 	function _handle(actionName, context) {
 		var fn = _actionList[actionName]
 		if (_.isFunction(fn)) {
-			console.log('executing action: ' + actionName)
+			//console.log('executing action: ' + actionName)
 			fn.call(context || window)
 		} else {
-			console.error('Not found callback of action: ' + actionName)
+			//TODO: make a mock `console` if not existed
+			//console.error('Not found callback of action: ' + actionName)
 		}
 	}
 
