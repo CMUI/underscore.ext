@@ -39,3 +39,6 @@ cat \
 	dist/underscore.ext.cmd.js
 
 # todo: amd release, or an universal module release
+
+# minify
+uglifyjs dist/underscore.ext.js -o dist/underscore.ext.min.js -c -m --screw-ie8 --stats --comments
