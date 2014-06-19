@@ -686,7 +686,7 @@ void function (window, _ext) {
 	_bind()
 
 	//exports for unit test
-	action._actionList = _actionList
+	action.__actionList = _actionList
 
 	//exports
 	_ext.exports('action', action)

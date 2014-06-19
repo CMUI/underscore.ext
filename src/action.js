@@ -2,26 +2,6 @@
 ////////////////////  action  ////////////////////
 //an easy and lazy solution for click-event-binding
 
-//step 1:
-//use `_.action.extend(actionList)` to define some actions
-//format of actionList:
-//{"action-name": callback, [...]}
-
-//step 2:
-//create a element and append to dom:
-//`<a href="#action-name" data-action>link</a>`
-//or `<a href="#" data-action="action-name">link</a>`
-//or `<button data-action="action-name">btn</button>`
-
-//step 3:
-//you've done everything. click the element to trigger the callback.
-//the callback is called on the element as its context.
-
-//one more thing:
-//use `_.action.trigger("action-name")` to call the callback manually.
-//you can use the optional second param to specify the callback's context:
-//`_.action.trigger("action-name", context)`
-
 void function (window, _ext) {
 	'use strict'
 
@@ -61,7 +41,7 @@ void function (window, _ext) {
 	}
 
 	//api
-	action.extend = function (actionSet) {
+	action.add = function (actionSet) {
 		if (_.isPlainObject(actionSet)) {
 			_.extend(_actionList, actionSet)
 		}
@@ -76,7 +56,7 @@ void function (window, _ext) {
 	_bind()
 
 	//exports for unit test
-	action._actionList = _actionList
+	action.__actionList = _actionList
 
 	//exports
 	_ext.exports('action', action)
