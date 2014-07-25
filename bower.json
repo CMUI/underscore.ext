@@ -34,7 +34,8 @@
     "zepto": "^1.1.3"
   },
   "devDependencies": {
-    "seajs": "*",
+    "underscore.string": "^2.3.3",
+    "seajs": "2.*",
     "mocha": "*",
     "chai": "*"
   }
