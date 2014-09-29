@@ -55,7 +55,7 @@ seajs.config({
 	}
 })
 seajs.use('../dist/underscore.ext.cmd', function (_) {
-	window._ = window._ || _
+	window._ = _
 	mocha.run()
 })
 </script>
