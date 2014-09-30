@@ -26,8 +26,7 @@
     "node_modules",
     "bower_components",
     "test",
-    "src",
-    "deps"
+    "src"
   ],
   "dependencies": {
     "underscore": "^1.6.0",
