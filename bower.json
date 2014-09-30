@@ -35,6 +35,7 @@
   "devDependencies": {
     "underscore.string": "^2.3.3",
     "seajs": "2.*",
+    "mocha.css": "0.1.0",
     "mocha": "*",
     "chai": "*"
   }
