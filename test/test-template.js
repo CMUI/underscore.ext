@@ -23,9 +23,6 @@ describe('Template', function () {
 		{name: 'Judy', age: '24'}
 	]
 
-	//test data
-	var data, html1, html2
-
 	//result
 	var result1 = '<p>' + HELLO + '<p>'
 	var result2 = [
@@ -34,94 +31,104 @@ describe('Template', function () {
 			'<li>Judy: 24</li>',
 		'</ul>'
 	].join('\n')
-	
-	//reference to internal caches
-	//notice: if re-assign these vars, reference will loose
-	var _cacheTemplate = _.template.__cacheTemplate
-	var _cacheCompiledTemplate = _.template.__cacheCompiledTemplate
-
-	//dummy script elements
-	var $elem1
-	var $elem2
-	function prepareDummyScript() {
-		$elem1 = $('<script/>', {
-			type: SCRIPT_TYPE,
-			id: PREFIX + TEMPLATE_ID_1
-		}).text(templateCode1).appendTo(_.dom.$body)
-		$elem2 = $('<script/>', {
-			type: SCRIPT_TYPE,
-			id: PREFIX + TEMPLATE_ID_2
-		}).text(templateCode2).appendTo(_.dom.$body)
-	}
-	function destroyDummyScript() {
-		$elem1.remove()
-		$elem2.remove()
-	}
-
-	//util
-	function clearCodeCache() {
-		delete _cacheTemplate[TEMPLATE_ID_1]
-		delete _cacheTemplate[TEMPLATE_ID_2]
-	}
-	function clearCompileCache() {
-		delete _cacheCompiledTemplate[TEMPLATE_ID_1]
-		delete _cacheCompiledTemplate[TEMPLATE_ID_2]
-	}
-
-	afterEach(function () {
-		clearCodeCache()
-		clearCompileCache()
-	})
 
 	describe('Util', function () {
+		var _isTemplateCode = _.template.__isTemplateCode
+		var _stripCommentTag = _.template.__stripCommentTag
+
 		describe('_.template.__isTemplateCode()', function () {
 			it('do basic functionality', function () {
-				expect(_.template.__isTemplateCode(templateCode1)).to.be.true
-				expect(_.template.__isTemplateCode(templateCode2)).to.be.true
+				expect(_isTemplateCode(templateCode1)).to.be.true
+				expect(_isTemplateCode(templateCode2)).to.be.true
 
 				var code
 				code = '<%= data %>'
-				expect(_.template.__isTemplateCode(code)).to.be.true
+				expect(_isTemplateCode(code)).to.be.true
 
 				code = undefined
-				expect(_.template.__isTemplateCode(code)).to.be.false
+				expect(_isTemplateCode(code)).to.be.false
 				code = ''
-				expect(_.template.__isTemplateCode(code)).to.be.false
+				expect(_isTemplateCode(code)).to.be.false
 				code = null
-				expect(_.template.__isTemplateCode(code)).to.be.false
+				expect(_isTemplateCode(code)).to.be.false
 				code = 'foobar'
-				expect(_.template.__isTemplateCode(code)).to.be.false
+				expect(_isTemplateCode(code)).to.be.false
 				code = '<p>foobar</p>'
-				expect(_.template.__isTemplateCode(code)).to.be.false
+				expect(_isTemplateCode(code)).to.be.false
 			})
 		})
 		describe('_.template.__stripCommentTag()', function () {
 			it('strip outta html comment tag', function () {
 				var code
 				code = '<!-- foobar -->'
-				expect(_.template.__stripCommentTag(code)).to.equal('foobar')
+				expect(_stripCommentTag(code)).to.equal('foobar')
 				code = '<!-- <p>foobar</p> -->'
-				expect(_.template.__stripCommentTag(code)).to.equal('<p>foobar</p>')
+				expect(_stripCommentTag(code)).to.equal('<p>foobar</p>')
 			})
 			it('return if not wrapped by comment tag', function () {
 				var code
 				code = undefined
-				expect(_.template.__stripCommentTag(code)).to.equal(String(code))
+				expect(_stripCommentTag(code)).to.equal(String(code))
 				code = null
-				expect(_.template.__stripCommentTag(code)).to.equal(String(code))
+				expect(_stripCommentTag(code)).to.equal(String(code))
 				code = ''
-				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				expect(_stripCommentTag(code)).to.equal(code)
 				code = '<%= data %>'
-				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				expect(_stripCommentTag(code)).to.equal(code)
 				code = 'foobar'
-				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				expect(_stripCommentTag(code)).to.equal(code)
 				code = '<p>foobar</p>'
-				expect(_.template.__stripCommentTag(code)).to.equal(code)
+				expect(_stripCommentTag(code)).to.equal(code)
 			})
 		})
 	})
 
 	describe('APIs', function () {
+		//test data
+		var data, html1, html2
+		var _cacheTemplate, _cacheCompiledTemplate
+
+		//util
+		function clearCodeCache() {
+			delete _cacheTemplate[TEMPLATE_ID_1]
+			delete _cacheTemplate[TEMPLATE_ID_2]
+		}
+		function clearCompileCache() {
+			delete _cacheCompiledTemplate[TEMPLATE_ID_1]
+			delete _cacheCompiledTemplate[TEMPLATE_ID_2]
+		}
+
+		//dummy script elements
+		var $elem1
+		var $elem2
+		function prepareDummyScript() {
+			$elem1 = $('<script/>', {
+				type: SCRIPT_TYPE,
+				id: PREFIX + TEMPLATE_ID_1
+			}).text(templateCode1).appendTo(_.dom.$body)
+			$elem2 = $('<script/>', {
+				type: SCRIPT_TYPE,
+				id: PREFIX + TEMPLATE_ID_2
+			}).text(templateCode2).appendTo(_.dom.$body)
+		}
+		function destroyDummyScript() {
+			$elem1.remove()
+			$elem2.remove()
+		}
+
+		before(function () {
+			_cacheTemplate = _.template.__cacheTemplate
+			_cacheCompiledTemplate = _.template.__cacheCompiledTemplate
+		})
+		beforeEach(function () {
+			clearCodeCache()
+			clearCompileCache()
+		})
+		after(function () {
+			clearCodeCache()
+			clearCompileCache()
+		})
+
 		describe('_.template.add()', function () {
 			it('add template code to template cache', function () {
 				expect(_cacheTemplate).to.be.deep.equal({})
