@@ -33,8 +33,12 @@ describe('Template', function () {
 	].join('\n')
 
 	describe('Util', function () {
-		var _isTemplateCode = _.template.__isTemplateCode
-		var _stripCommentTag = _.template.__stripCommentTag
+		var _isTemplateCode, _stripCommentTag
+
+		before(function () {
+			_isTemplateCode = _.template.__isTemplateCode
+			_stripCommentTag = _.template.__stripCommentTag
+		})
 
 		describe('_.template.__isTemplateCode()', function () {
 			it('do basic functionality', function () {
