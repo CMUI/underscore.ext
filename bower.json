@@ -29,6 +29,7 @@
     "src"
   ],
   "dependencies": {
+    "action": "0.2.1",
     "underscore": "^1.6.0",
     "zepto": "^1.1.3"
   },
