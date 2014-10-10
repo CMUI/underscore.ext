@@ -25,7 +25,13 @@ describe('UA', function () {
 	})
 
 	describe('Detect UA String', function () {
-		describe('_.ua.__detect()', function () {
+		describe('_detect()', function () {
+			//fn
+			var _detect
+			before(function () {
+				_detect = _.ua.__detect
+			})
+
 			//ios safari
 			var iphone_ios_40 = {str: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.05 Mobile/8A293 Safari/6531.22.7'}
 			var ipod_ios_30 = {str: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_0 like Mac OS X; zh-cn) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16'}
@@ -44,7 +50,7 @@ describe('UA', function () {
 
 			describe('iOS Safari', function () {
 				it('recognize typical devices - iphone_ios_40', function () {
-					var ua = _.ua.__detect(iphone_ios_40)
+					var ua = _detect(iphone_ios_40)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
@@ -54,7 +60,7 @@ describe('UA', function () {
 					expect(ua.osVersion).to.equal('4.0')
 				})
 				it('recognize typical devices - ipod_ios_30', function () {
-					var ua = _.ua.__detect(ipod_ios_30)
+					var ua = _detect(ipod_ios_30)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
@@ -64,7 +70,7 @@ describe('UA', function () {
 					expect(ua.osVersion).to.equal('3.0')
 				})
 				it('recognize typical devices - ipad_ios_322', function () {
-					var ua = _.ua.__detect(ipad_ios_322)
+					var ua = _detect(ipad_ios_322)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
@@ -74,7 +80,7 @@ describe('UA', function () {
 					expect(ua.osVersion).to.equal('3.2')
 				})
 				it('recognize typical devices - iphone_ios_60', function () {
-					var ua = _.ua.__detect(iphone_ios_60)
+					var ua = _detect(iphone_ios_60)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
@@ -84,35 +90,35 @@ describe('UA', function () {
 					expect(ua.osVersion).to.equal('6.0')
 				})
 				it('recognize typical devices - iphone_ios_00', function () {
-					var ua = _.ua.__detect(iphone_ios_00)
+					var ua = _detect(iphone_ios_00)
 					expect(ua.osVersion).to.equal('0.0')
 				})
 				it('recognize typical devices - ipod_ios_99900', function () {
-					var ua = _.ua.__detect(ipod_ios_99900)
+					var ua = _detect(ipod_ios_99900)
 					expect(ua.osVersion).to.equal('999.0')
 				})
 				it('recognize typical devices - ipad_ios_00', function () {
-					var ua = _.ua.__detect(ipad_ios_00)
+					var ua = _detect(ipad_ios_00)
 					expect(ua.osVersion).to.equal('0.0')
 				})
 			})
 			describe('iOS Third-Party Browser', function () {
 				it('recognize typical devices - uc_ios_421', function () {
-					var ua = _.ua.__detect(uc_ios_421)
+					var ua = _detect(uc_ios_421)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
 					expect(ua.osVersion).to.equal('4.2')
 				})
 				it('recognize typical devices - uc_ios_501', function () {
-					var ua = _.ua.__detect(uc_ios_501)
+					var ua = _detect(uc_ios_501)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
 					expect(ua.osVersion).to.equal('5.0')
 				})
 				it('recognize typical devices - qq_ios_511', function () {
-					var ua = _.ua.__detect(qq_ios_511)
+					var ua = _detect(qq_ios_511)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
 					expect(!!ua.isAndroid).to.be.false
@@ -122,7 +128,7 @@ describe('UA', function () {
 					expect(ua.osVersion).to.equal('5.1')
 				})
 				it('recognize typical devices - gc_ios_511', function () {
-					var ua = _.ua.__detect(gc_ios_511)
+					var ua = _detect(gc_ios_511)
 					expect(!!ua.isChrome).to.be.true
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.true
@@ -156,28 +162,28 @@ describe('UA', function () {
 
 			describe('Android Browser', function () {
 				it('recognize typical devices - adr_21', function () {
-					var ua = _.ua.__detect(adr_21)
+					var ua = _detect(adr_21)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('2.1')
 				})
 				it('recognize typical devices - adr_22', function () {
-					var ua = _.ua.__detect(adr_22)
+					var ua = _detect(adr_22)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('2.2')
 				})
 				it('recognize typical devices - adr_234', function () {
-					var ua = _.ua.__detect(adr_234)
+					var ua = _detect(adr_234)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('2.3')
 				})
 				it('recognize typical devices - adr_403', function () {
-					var ua = _.ua.__detect(adr_403)
+					var ua = _detect(adr_403)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -186,28 +192,28 @@ describe('UA', function () {
 			})
 			describe('Android Third-Party Browser', function () {
 				it('recognize typical devices - uc_adr_233', function () {
-					var ua = _.ua.__detect(uc_adr_233)
+					var ua = _detect(uc_adr_233)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('2.3')
 				})
 				it('recognize typical devices - uc_adr_234', function () {
-					var ua = _.ua.__detect(uc_adr_234)
+					var ua = _detect(uc_adr_234)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('2.3')
 				})
 				it('recognize typical devices - uc_adr_404', function () {
-					var ua = _.ua.__detect(uc_adr_404)
+					var ua = _detect(uc_adr_404)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
 					expect(ua.osVersion).to.equal('4.0')
 				})
 				it('recognize typical devices - uc_adr_00', function () {
-					var ua = _.ua.__detect(uc_adr_00)
+					var ua = _detect(uc_adr_00)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -215,7 +221,7 @@ describe('UA', function () {
 				})
 
 				it('recognize typical devices - qq_adr_422', function () {
-					var ua = _.ua.__detect(qq_adr_422)
+					var ua = _detect(qq_adr_422)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -223,7 +229,7 @@ describe('UA', function () {
 				})
 
 				it('recognize typical devices - ff_adr_00', function () {
-					var ua = _.ua.__detect(ff_adr_00)
+					var ua = _detect(ff_adr_00)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -231,7 +237,7 @@ describe('UA', function () {
 				})
 
 				it('recognize typical devices - op_adr_404', function () {
-					var ua = _.ua.__detect(op_adr_404)
+					var ua = _detect(op_adr_404)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -239,7 +245,7 @@ describe('UA', function () {
 				})
 
 				it('recognize typical devices - xx_adr_235', function () {
-					var ua = _.ua.__detect(xx_adr_235)
+					var ua = _detect(xx_adr_235)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true
@@ -247,7 +253,7 @@ describe('UA', function () {
 				})
 
 				it('recognize typical devices - xx_adr_22', function () {
-					var ua = _.ua.__detect(xx_adr_22)
+					var ua = _detect(xx_adr_22)
 					expect(!!ua.isMobileDevice).to.be.true
 					expect(!!ua.isIOS).to.be.false
 					expect(!!ua.isAndroid).to.be.true

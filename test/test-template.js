@@ -66,12 +66,12 @@ describe('Template', function () {
 				prepareDummyScript()
 
 				html1 = _.template.render(TEMPLATE_ELEM_ID_1, templateData1)
-				expect(html1).to.be.equal(result1)
+				expect(html1).to.equal(result1)
 				html2 = _.template.render(TEMPLATE_ELEM_ID_2, templateData2)
 				//todo: need `_.str.clean()`
 				html2 = html2.replace(/\s+/g, ' ')
 				result2 = result2.replace(/\s+/g, ' ')
-				expect(html2).to.be.equal(result2)
+				expect(html2).to.equal(result2)
 
 				destroyDummyScript()
 			})
@@ -81,31 +81,31 @@ describe('Template', function () {
 				_.template.add(TEMPLATE_CODE_ID_2, templateCode2)
 
 				html1 = _.template.render(TEMPLATE_CODE_ID_1, templateData1)
-				expect(html1).to.be.equal(result1)
+				expect(html1).to.equal(result1)
 				html2 = _.template.render(TEMPLATE_CODE_ID_2, templateData2)
 				//todo: need `_.str.clean()`
 				html2 = html2.replace(/\s+/g, ' ')
 				result2 = result2.replace(/\s+/g, ' ')
-				expect(html2).to.be.equal(result2)
+				expect(html2).to.equal(result2)
 			})
 			it('get template from cache, then render', function () {
 				//notice: after above testing, there have been 4 templates in cache
 
 				html1 = _.template.render(TEMPLATE_ELEM_ID_1, templateData1)
-				expect(html1).to.be.equal(result1)
+				expect(html1).to.equal(result1)
 				html2 = _.template.render(TEMPLATE_ELEM_ID_2, templateData2)
 				//todo: need `_.str.clean()`
 				html2 = html2.replace(/\s+/g, ' ')
 				result2 = result2.replace(/\s+/g, ' ')
-				expect(html2).to.be.equal(result2)
+				expect(html2).to.equal(result2)
 
 				html1 = _.template.render(TEMPLATE_CODE_ID_1, templateData1)
-				expect(html1).to.be.equal(result1)
+				expect(html1).to.equal(result1)
 				html2 = _.template.render(TEMPLATE_CODE_ID_2, templateData2)
 				//todo: need `_.str.clean()`
 				html2 = html2.replace(/\s+/g, ' ')
 				result2 = result2.replace(/\s+/g, ' ')
-				expect(html2).to.be.equal(result2)
+				expect(html2).to.equal(result2)
 			})
 		})
 
