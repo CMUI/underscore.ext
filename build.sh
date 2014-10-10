@@ -15,10 +15,13 @@ cat \
 	src/ua.js \
 	src/url.js \
 	src/dom.js \
-	src/adapter-action/_intro.js \
+	src/adapter-mod-action/_intro.js \
 	bower_components/action/src/action.js \
-	src/adapter-action/_outro.js \
-	src/template.js \
+	src/adapter-mod-action/_outro.js \
+	src/adapter-mod-template/_intro.js \
+	bower_components/underscore.template/src/underscore.template.js \
+	src/adapter-mod-template/config.js \
+	src/adapter-mod-template/_outro.js \
 	src/adapter-trad/_outro.js \
 	> \
 	dist/underscore.ext.js
@@ -34,10 +37,13 @@ cat \
 	src/ua.js \
 	src/url.js \
 	src/dom.js \
-	src/adapter-action/_intro.js \
+	src/adapter-mod-action/_intro.js \
 	bower_components/action/src/action.js \
-	src/adapter-action/_outro.js \
-	src/template.js \
+	src/adapter-mod-action/_outro.js \
+	src/adapter-mod-template/_intro.js \
+	bower_components/underscore.template/src/underscore.template.js \
+	src/adapter-mod-template/config.js \
+	src/adapter-mod-template/_outro.js \
 	src/adapter-cmd/_outro.js \
 	> \
 	dist/underscore.ext.cmd.js

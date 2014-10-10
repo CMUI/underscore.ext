@@ -34,7 +34,9 @@ var expect = chai.expect
 <script src="../src/dom.js"></script>
 <script src="../bower_components/action/src/action.js"></script>
 <script>_.action = action</script>
-<script src="../src/template.js"></script>
+<script src="../bower_components/underscore.template/src/underscore.template.js"></script>
+<script src="../src/adapter-mod-template/config.js"></script>
+<script>_.extend(_.template, template)</script>
 <!-- test-case -->
 <script src="test-str-backup.js"></script>
 <script src="test-str.js"></script>
