@@ -6,8 +6,9 @@ mkdir dist
 
 # normal release
 cat \
-	src/adapter-trad/_intro.js \
-	src/adapter-trad/_var.js \
+	src/adapter-dist-trad/_intro.js \
+	src/adapter-dist-trad/var.js \
+	src/adapter-dist-trad/_defense.js \
 	src/core.js \
 	src/str-backup.js \
 	src/str.js \
@@ -22,14 +23,14 @@ cat \
 	bower_components/underscore.template/src/underscore.template.js \
 	src/adapter-mod-template/config.js \
 	src/adapter-mod-template/_outro.js \
-	src/adapter-trad/_outro.js \
+	src/adapter-dist-trad/_outro.js \
 	> \
 	dist/underscore.ext.js
 
 # cmd release
 cat \
-	src/adapter-cmd/_intro.js \
-	src/adapter-cmd/_var.js \
+	src/adapter-dist-cmd/_intro.js \
+	src/adapter-dist-cmd/var.js \
 	src/core.js \
 	src/str-backup.js \
 	src/str.js \
@@ -44,7 +45,7 @@ cat \
 	bower_components/underscore.template/src/underscore.template.js \
 	src/adapter-mod-template/config.js \
 	src/adapter-mod-template/_outro.js \
-	src/adapter-cmd/_outro.js \
+	src/adapter-dist-cmd/_outro.js \
 	> \
 	dist/underscore.ext.cmd.js
 

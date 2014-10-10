@@ -610,14 +610,15 @@ void function (window, _ext) {
 }(window, _ext)
 
 ////////////////////  action  ////////////////////
-//include and wrap external lib: action.js
+//include and wrap external module: action.js
 
 void function (window, _ext) {
 	'use strict'
 
 /**
  * Action.js - Easy and lazy solution for click-event-binding.
- * (https://github.com/cssmagic/action.js)
+ * Released under the MIT license.
+ * https://github.com/cssmagic/action.js
  */
 var action = function () {
 	'use strict'
@@ -627,6 +628,20 @@ var action = function () {
 
 	var SELECTOR = '[data-action]'
 	var _actionList = {}
+
+	//util
+	function _getActionName($elem) {
+		var result = $elem.data('action') || ''
+		if (!result) {
+			var href = $.trim($elem.attr('href'))
+			if (href && href.indexOf('#') === 0) result = href
+		}
+		return _formatActionName(result)
+	}
+	function _formatActionName(s) {
+		var result = s ? $.trim(String(s)).replace(/^[#!]+/, '') : ''
+		return $.trim(result)
+	}
 
 	function _init() {
 		var $wrapper = $(document.body || document.documentElement)
@@ -644,19 +659,6 @@ var action = function () {
 				/** DEBUG_INFO_END **/
 			}
 		})
-	}
-
-	function _getActionName($elem) {
-		var result = $elem.data('action') || ''
-		if (!result) {
-			var href = $.trim($elem.attr('href'))
-			if (href && href.indexOf('#') === 0) result = href
-		}
-		return _formatActionName(result)
-	}
-	function _formatActionName(s) {
-		var result = s ? $.trim(s + '').replace(/^[#!]+/, '') : ''
-		return $.trim(result)
 	}
 	function _handle(actionName, context) {
 		var fn = _actionList[actionName]
@@ -728,28 +730,24 @@ var action = function () {
 }(window, _ext)
 
 ////////////////////  template  ////////////////////
-//front-end template fetching, caching and rendering
+//include and wrap external module: underscore.template
 
 void function (window, _ext) {
+	'use strict'
+
+/**
+ * Underscore.template - More APIs for Underscore's template engine.
+ * Released under the MIT license.
+ * https://github.com/cssmagic/underscore.template
+ */
+var template = function () {
 	'use strict'
 
 	//namespace
 	var template = {}
 
 	//config
-	var _config = {
-		//for jedi 1.0
-		needStripCommentTag: true,
-
-		//compatible with ejs
-		interpolate : /<%-([\s\S]+?)%>/g,
-		escape      : /<%=([\s\S]+?)%>/g,
-
-		//to avoid use `with` in compiled templates
-		//see: https://github.com/cssmagic/blog/issues/4
-		variable: 'data'
-	}
-	var PREFIX_TEMPLATE = 'template-'
+	var ELEM_ID_PREFIX = 'template-'
 
 	//cache
 	var _cacheTemplate = {}
@@ -757,10 +755,17 @@ void function (window, _ext) {
 
 	//util
 	function _toTemplateId(id) {
-		return String(id).replace(PREFIX_TEMPLATE, '')
+		//`#template-my-tpl-001` -> `my-tpl-001`
+		// `template-my-tpl-001` -> `my-tpl-001`
+		//          `my-tpl-001` -> `my-tpl-001`
+		id = id ? _.str.trim(id).replace(/^[#!]+/, '') : ''
+		return _.str.trim(id).replace(ELEM_ID_PREFIX, '')
 	}
 	function _toElementId(id) {
-		return _.str.startsWith(id, PREFIX_TEMPLATE) ? id : PREFIX_TEMPLATE + id
+		//`template-my-tpl-001` -> `template-my-tpl-001`
+		//         `my-tpl-001` -> `template-my-tpl-001`
+		id = id ? _.str.trim(id) : ''
+		return _.str.startsWith(id, ELEM_ID_PREFIX) ? id : ELEM_ID_PREFIX + id
 	}
 	function _stripCommentTag(str) {
 		str = String(str)
@@ -772,25 +777,33 @@ void function (window, _ext) {
 	}
 	//get template by id (of dummy script element in html)
 	function _getTemplateById(id) {
-		if (!id || !_.isString(id)) return false
+		if (!id) return false
 		var result
-		var idElement = _toElementId(id)
-		var elem = document.getElementById(idElement)
-		if (!elem) {
-			console.error('Element "#' + idElement + '" not found!')
-		} else {
+		var elementId = _toElementId(String(id))
+		var elem = document.getElementById(elementId)
+		if (elem) {
 			var str = _.str.trim(elem.innerHTML)
-			if (!str) {
-				console.error('Element "#' + idElement + '" is empty!')
-			} else {
+			if (str) {
 				//strip html comment tag wrapping template code
-				if (_.templateSettings.needStripCommentTag) str = _stripCommentTag(str)
+				//especially for jedi 1.0 (https://github.com/baixing/jedi)
+				if (_.templateSettings.shouldUnwrapCommentTag) str = _stripCommentTag(str)
+
 				if (_isTemplateCode(str)) {
 					result = str
 				} else {
-					console.error('Template code in element "#' + idElement + '" is no valid!')
+					/** DEBUG_INFO_START **/
+					console.warn('[Template] Template code in element "#' + elementId + '" is invalid!')
+					/** DEBUG_INFO_END **/
 				}
+			} else {
+				/** DEBUG_INFO_START **/
+				console.warn('[Template] Element "#' + elementId + '" is empty!')
+				/** DEBUG_INFO_END **/
 			}
+		} else {
+			/** DEBUG_INFO_START **/
+			console.warn('[Template] Element "#' + elementId + '" not found!')
+			/** DEBUG_INFO_END **/
 		}
 		return result || false
 	}
@@ -800,19 +813,18 @@ void function (window, _ext) {
 	}
 
 	//fn
-	function updateSettings() {
-		_.extend(_.templateSettings, _config)
-	}
 	function add(id, templateCode) {
 		//todo: accept second param as a function, to support pre-compiled template.
-		if (!id || !_.isString(id)) return false
-		id = _.str.stripHash(id)
+		if (arguments.length < 2) return false
+
 		var result
 		if (templateCode) {
 			var templateId = _toTemplateId(id)
+			/** DEBUG_INFO_START **/
 			if (_cacheTemplate[templateId]) {
-				console.warn('Template cache already has id: "' + templateId + '"')
+				console.warn('[Template] Template id "' + templateId + '" already existed.')
 			}
+			/** DEBUG_INFO_END **/
 			result = _cacheTemplate[templateId] = templateCode
 		} else {
 			//todo: support `_.template.add(id)` to add from dummy script element
@@ -862,14 +874,31 @@ void function (window, _ext) {
 		return result || ''
 	}
 
-	//init
-	updateSettings()
-
+	/** DEBUG_INFO_START **/
 	//exports for unit test
+	template.__toTemplateId = _toTemplateId
+	template.__toElementId = _toElementId
 	template.__isTemplateCode = _isTemplateCode
 	template.__stripCommentTag = _stripCommentTag
 	template.__cacheTemplate = _cacheTemplate
 	template.__cacheCompiledTemplate = _cacheCompiledTemplate
+	/** DEBUG_INFO_END **/
+
+	//exports
+	return template
+
+}()
+
+var _config = {
+	//compatible with ejs
+	interpolate : /<%-([\s\S]+?)%>/g,
+	escape      : /<%=([\s\S]+?)%>/g,
+
+	//to avoid use `with` in compiled templates
+	//see: https://github.com/cssmagic/blog/issues/4
+	variable: 'data'
+}
+_.extend(_.templateSettings, _config)
 
 	//exports
 	_ext.exports('template', template)
