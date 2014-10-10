@@ -32,60 +32,6 @@ describe('Template', function () {
 		'</ul>'
 	].join('\n')
 
-	describe('Util', function () {
-		var _isTemplateCode, _stripCommentTag
-
-		before(function () {
-			_isTemplateCode = _.template.__isTemplateCode
-			_stripCommentTag = _.template.__stripCommentTag
-		})
-
-		describe('_.template.__isTemplateCode()', function () {
-			it('do basic functionality', function () {
-				expect(_isTemplateCode(templateCode1)).to.be.true
-				expect(_isTemplateCode(templateCode2)).to.be.true
-
-				var code
-				code = '<%= data %>'
-				expect(_isTemplateCode(code)).to.be.true
-
-				code = undefined
-				expect(_isTemplateCode(code)).to.be.false
-				code = ''
-				expect(_isTemplateCode(code)).to.be.false
-				code = null
-				expect(_isTemplateCode(code)).to.be.false
-				code = 'foobar'
-				expect(_isTemplateCode(code)).to.be.false
-				code = '<p>foobar</p>'
-				expect(_isTemplateCode(code)).to.be.false
-			})
-		})
-		describe('_.template.__stripCommentTag()', function () {
-			it('strip outta html comment tag', function () {
-				var code
-				code = '<!-- foobar -->'
-				expect(_stripCommentTag(code)).to.equal('foobar')
-				code = '<!-- <p>foobar</p> -->'
-				expect(_stripCommentTag(code)).to.equal('<p>foobar</p>')
-			})
-			it('return if not wrapped by comment tag', function () {
-				var code
-				code = undefined
-				expect(_stripCommentTag(code)).to.equal(String(code))
-				code = null
-				expect(_stripCommentTag(code)).to.equal(String(code))
-				code = ''
-				expect(_stripCommentTag(code)).to.equal(code)
-				code = '<%= data %>'
-				expect(_stripCommentTag(code)).to.equal(code)
-				code = 'foobar'
-				expect(_stripCommentTag(code)).to.equal(code)
-				code = '<p>foobar</p>'
-				expect(_stripCommentTag(code)).to.equal(code)
-			})
-		})
-	})
 
 	describe('APIs', function () {
 		//test data
