@@ -20,7 +20,7 @@ cat \
 	bower_components/action/src/action.js \
 	src/adapter-mod-action/_outro.js \
 	src/adapter-mod-template/_intro.js \
-	bower_components/underscore.template/src/underscore.template.js \
+	bower_components/underscore-template/src/underscore-template.js \
 	src/adapter-mod-template/config.js \
 	src/adapter-mod-template/_outro.js \
 	src/adapter-dist-trad/_outro.js \
@@ -42,7 +42,7 @@ cat \
 	bower_components/action/src/action.js \
 	src/adapter-mod-action/_outro.js \
 	src/adapter-mod-template/_intro.js \
-	bower_components/underscore.template/src/underscore.template.js \
+	bower_components/underscore-template/src/underscore-template.js \
 	src/adapter-mod-template/config.js \
 	src/adapter-mod-template/_outro.js \
 	src/adapter-dist-cmd/_outro.js \
