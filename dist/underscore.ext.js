@@ -730,15 +730,15 @@ var action = function () {
 }(window, _ext)
 
 ////////////////////  template  ////////////////////
-//include and wrap external module: underscore.template
+//include and wrap external module: underscore-template
 
 void function (window, _ext) {
 	'use strict'
 
 /**
- * Underscore.template - More APIs for Underscore's template engine.
+ * Underscore-template - More APIs for Underscore's template engine - template fetching, rendering and caching.
  * Released under the MIT license.
- * https://github.com/cssmagic/underscore.template
+ * https://github.com/cssmagic/underscore-template
  */
 var template = function () {
 	'use strict'

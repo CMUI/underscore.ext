@@ -1,6 +1,6 @@
 {
   "name": "underscore.ext",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/CMUI/underscore.ext",
   "authors": [
     "cssmagic"
@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "action": "~0.2.2",
-    "underscore.template": "*",
+    "underscore-template": "*",
     "underscore": "^1.6.0",
     "zepto": "^1.1.3"
   },
