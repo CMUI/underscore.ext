@@ -1,9 +1,8 @@
 {
   "name": "underscore.ext",
-  "version": "0.3.3",
   "homepage": "https://github.com/CMUI/underscore.ext",
   "authors": [
-    "cssmagic"
+    "cssmagic <cssmagic.cn@gmail.com>"
   ],
   "description": "Lightweight JavaScript utilities for mobile web development.",
   "main": "dist/underscore.ext.js",
@@ -13,9 +12,7 @@
   "keywords": [
     "underscore",
     "mobile",
-    "web",
-    "util",
-    "browser"
+    "web"
   ],
   "license": "MIT",
   "ignore": [
@@ -29,16 +26,16 @@
     "src"
   ],
   "dependencies": {
-    "underscore": "^1.6.0",
-    "zepto": "^1.1.3"
+    "underscore": "1.*",
+    "zepto.js": "1.*"
   },
   "devDependencies": {
     "action": "^0.3.0",
     "underscore-template": "*",
-    "underscore.string": "^2.3.3",
+    "underscore.string": "2.*",
     "seajs": "2.*",
     "mocha.css": "0.1.0",
-    "mocha": "*",
-    "chai": "*"
+    "mocha": "1.*",
+    "chai": "1.*"
   }
 }
