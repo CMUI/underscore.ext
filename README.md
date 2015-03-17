@@ -26,6 +26,9 @@ Lightweight JavaScript utilities for mobile web, based on Underscore and Zepto.
 	$ gulp
 	```
 
+3. 生成文件保存于`/dist`下     
+
+
 ***
 
 ## License
