@@ -1,11 +1,11 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglifyjs');
-var del = require('del');
+var gulp = require('gulp')
+var concat = require('gulp-concat')
+var uglify = require('gulp-uglifyjs')
+var del = require('del')
 
 //clean old files
 gulp.task('clean', function(cb) {
-	del('./dist/*.js', cb);
+	del('./dist/*.js', cb)
 });
 
 //Merge JS files
@@ -31,14 +31,14 @@ gulp.task('concat', function() {
 		'./src/adapter-dist-trad/_outro.js'
 	])
 		.pipe(concat('underscore-ext.js'))
-		.pipe(gulp.dest('./dist/'));
+		.pipe(gulp.dest('./dist/'))
 });
 
 //Compress the Js file
 gulp.task('uglify', function() {
 	gulp.src('./dist/underscore-ext.js')
 		.pipe(uglify('underscore-ext.min.js'))
-		.pipe(gulp.dest('./dist'));
+		.pipe(gulp.dest('./dist'))
 });
 
-gulp.task('default', ['clean','concat','uglify']);
+gulp.task('default', ['clean', 'concat', 'uglify'])
