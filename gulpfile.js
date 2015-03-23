@@ -3,10 +3,12 @@ var concat = require('gulp-concat')
 var uglify = require('gulp-uglifyjs')
 var del = require('del')
 
+gulp.task('default', ['clean', 'concat', 'uglify'])
+
 //clean old files
 gulp.task('clean', function(cb) {
 	del('./dist/*.js', cb)
-});
+})
 
 //Merge JS files
 gulp.task('concat', function() {
@@ -32,13 +34,11 @@ gulp.task('concat', function() {
 	])
 		.pipe(concat('underscore-ext.js'))
 		.pipe(gulp.dest('./dist/'))
-});
+})
 
 //Compress the Js file
-gulp.task('uglify', function() {
+gulp.task('uglify', ['concat'], function() {
 	gulp.src('./dist/underscore-ext.js')
 		.pipe(uglify('underscore-ext.min.js'))
 		.pipe(gulp.dest('./dist'))
-});
-
-gulp.task('default', ['clean', 'concat', 'uglify'])
+})
