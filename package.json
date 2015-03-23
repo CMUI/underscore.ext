@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git://github.com/username/repository.git"
   },
-  "moduleType": [
-    "globals"
-  ],
   "keywords": [
     "underscore",
     "mobile",
@@ -23,7 +20,6 @@
     "**/.*",
     "**.sh",
     "**.min.js",
-    "package.json",
     "node_modules",
     "bower_components",
     "test",
