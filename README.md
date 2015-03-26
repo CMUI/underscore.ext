@@ -31,8 +31,8 @@ Lightweight JavaScript utilities for mobile web, based on Underscore and Zepto.
 2.  在页面中加载 underscore.ext 以及必要的依赖
     ```html
     <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/underscore.ext/dist/underscore.ext.js"></script>
     <script src="bower_components/zepto.js/dist/zepto.min.js"></script>
+    <script src="bower_components/underscore.ext/dist/underscore.ext.js"></script>
     ```
 
 ***
@@ -55,13 +55,13 @@ Lightweight JavaScript utilities for mobile web, based on Underscore and Zepto.
     $ gulp
     ```
 
-4. 生成文件保存于`/dist`下     
+4. 生成文件保存于 `/dist` 下     
 
 ***
 ## 单元测试
 1. 把本项目的代码 fork 并 clone 到本地。
-2. 在项目根目录执行`bower install`，安装必要的依赖。
-3. 在浏览器中打开`test/test-dev.html`即可运行单元测试。 
+2. 在项目根目录执行 `bower install`，安装必要的依赖。
+3. 在浏览器中打开 `test/test-dev.html` 即可运行单元测试。 
 
 ## License
 
