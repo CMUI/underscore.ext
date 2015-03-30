@@ -1,9 +1,9 @@
 describe('(Root)', function () {
 	describe('_.isPlainObject()', function () {
-		it('be alias of $\'s same api', function () {
+		it('is an alias of $\'s same api', function () {
 			expect($.isPlainObject === _.isPlainObject).to.be.true
 		})
-		it('do basic functionality', function () {
+		it('does basic functionality', function () {
 			var arg
 			arg = {}
 			expect(_.isPlainObject(arg)).to.be.true
@@ -22,7 +22,7 @@ describe('(Root)', function () {
 			arg = document.documentElement
 			expect(_.isPlainObject(arg)).to.be.false
 		})
-		it('return `false` if input other types', function () {
+		it('returns `false` if input other types', function () {
 			var arg
 			arg = undefined
 			expect(_.isPlainObject(arg)).to.be.false
@@ -46,19 +46,20 @@ describe('(Root)', function () {
 	})
 
 	describe('_.$()', function () {
-		it('do basic functionality same as $()', function () {
+		it('does basic functionality same as $()', function () {
 			var elem = document.getElementById('mocha')
 			var obj = _.$(elem)
 			expect(obj).to.deep.equal($(elem))
 		})
-		it('return directly if already $collection', function () {
+		it('returns directly if already $collection', function () {
 			var obj = $('#mocha')
 			expect(_.$(obj)).to.equal(obj)
 		})
-		it('do basic functionality via caching property', function () {
+		it('doesn\'t generate multiple $collections for same dom element', function () {
 			var obj = document.getElementById('mocha')
-			var $obj = _.$(obj)
-			expect(obj.__$__).to.equal($obj)
+			var $a = _.$(obj)
+			var $b = _.$(obj)
+			expect($a).to.equal($b)
 		})
 	})
 

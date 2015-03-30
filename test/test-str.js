@@ -2,7 +2,7 @@ describe('String', function () {
 	describe('Shortcuts', function () {
 		describe('_.str.RE_EMAIL', function () {
 			var CHAR_AT = '@'	//to avoid email crawler and spammer
-			it('match email', function () {
+			it('matches email', function () {
 				var arg
 				//normal email addr
 				arg = 'dev' + CHAR_AT + 'cmui.net'
@@ -23,7 +23,7 @@ describe('String', function () {
 				arg = 'DEV' + CHAR_AT + 'UNDERSCORE.EXT'
 				expect(_.str.RE_EMAIL.test(arg)).to.be.true
 			})
-			it('recognize bad value', function () {
+			it('recognizes bad value', function () {
 				var arg
 				//domain suffix need at least 2 letters
 				arg = 'a' + CHAR_AT + 'a.a'
@@ -37,7 +37,7 @@ describe('String', function () {
 			})
 		})
 		describe('_.str.RE_MOBILE', function () {
-			it('match mobile number', function () {
+			it('matches mobile number', function () {
 				var arg
 				arg = '13000000000'
 				expect(_.str.RE_MOBILE.test(arg)).to.be.true
@@ -50,7 +50,7 @@ describe('String', function () {
 				arg = 18978963214
 				expect(_.str.RE_MOBILE.test(arg)).to.be.true
 			})
-			it('recognize bad value', function () {
+			it('recognizes bad value', function () {
 				var arg
 				arg = '12000000000'
 				expect(_.str.RE_MOBILE.test(arg)).to.be.false
@@ -63,7 +63,7 @@ describe('String', function () {
 			})
 		})
 		describe('_.str.RE_POSTCODE', function () {
-			it('match postcode', function () {
+			it('matches postcode', function () {
 				var arg
 				arg = '000000'
 				expect(_.str.RE_POSTCODE.test(arg)).to.be.true
@@ -78,7 +78,7 @@ describe('String', function () {
 				arg = 114477
 				expect(_.str.RE_POSTCODE.test(arg)).to.be.true
 			})
-			it('recognize bad value', function () {
+			it('recognizes bad value', function () {
 				var arg
 				arg = '11111'
 				expect(_.str.RE_POSTCODE.test(arg)).to.be.false
@@ -96,7 +96,7 @@ describe('String', function () {
 
 	describe('Methods', function () {
 		describe('_.str.isHash()', function () {
-			it('return `true` if a string starts with `#`', function () {
+			it('returns `true` if a string starts with `#`', function () {
 				var arg
 				arg = 'foo'
 				expect(_.str.isHash(arg)).to.be.false
@@ -107,7 +107,7 @@ describe('String', function () {
 				arg = '#!foobar'
 				expect(_.str.isHash(arg)).to.be.true
 			})
-			it('ignore initial spaces', function () {
+			it('ignores initial spaces', function () {
 				var arg
 				arg = '  foo  '
 				expect(_.str.isHash(arg)).to.be.false
@@ -118,7 +118,7 @@ describe('String', function () {
 				arg = '  #!foobar  '
 				expect(_.str.isHash(arg)).to.be.true
 			})
-			it('return `false` if bad type of param', function () {
+			it('returns `false` if bad type of param', function () {
 				var arg
 				arg = undefined
 				expect(_.str.isHash(arg)).to.be.false
@@ -137,7 +137,7 @@ describe('String', function () {
 			})
 		})
 		describe('_.str.stripHash()', function () {
-			it('remove all initial `#` characters', function () {
+			it('removes all initial `#` characters', function () {
 				var arg
 				arg = '#foo'
 				expect(_.str.stripHash(arg)).to.equal('foo')
@@ -146,19 +146,19 @@ describe('String', function () {
 				arg = '###foo#bar'
 				expect(_.str.stripHash(arg)).to.equal('foo#bar')
 			})
-			it('remove first `!` characters after all initial `#` characters', function () {
+			it('removes first `!` characters after all initial `#` characters', function () {
 				var arg
 				arg = '#!foobar'
 				expect(_.str.stripHash(arg)).to.equal('foobar')
 				arg = '#!foo!bar'
 				expect(_.str.stripHash(arg)).to.equal('foo!bar')
 			})
-			it('return directly if initial character is not `#`', function () {
+			it('returns directly if initial character is not `#`', function () {
 				var arg
 				arg = 'foobar'
 				expect(_.str.stripHash(arg)).to.equal(arg)
 			})
-			it('ignore initial and ending spaces', function () {
+			it('ignores initial and ending spaces', function () {
 				var arg
 				arg = '  foo  '
 				expect(_.str.stripHash(arg)).to.equal('foo')

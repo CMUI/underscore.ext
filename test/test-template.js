@@ -62,7 +62,7 @@ describe('Template', function () {
 				$elem2.remove()
 			}
 
-			it('get template from dom, then render', function () {
+			it('gets template from dom, then renders it', function () {
 				prepareDummyScript()
 
 				html1 = _.template.render(TEMPLATE_ELEM_ID_1, templateData1)
@@ -75,7 +75,7 @@ describe('Template', function () {
 
 				destroyDummyScript()
 			})
-			it('add template manually, then render', function () {
+			it('adds template manually, then renders it', function () {
 				//use `add()` api to
 				_.template.add(TEMPLATE_CODE_ID_1, templateCode1)
 				_.template.add(TEMPLATE_CODE_ID_2, templateCode2)
@@ -88,7 +88,7 @@ describe('Template', function () {
 				result2 = result2.replace(/\s+/g, ' ')
 				expect(html2).to.equal(result2)
 			})
-			it('get template from cache, then render', function () {
+			it('gets template from cache, then renders it', function () {
 				//notice: after above testing, there have been 4 templates in cache
 
 				html1 = _.template.render(TEMPLATE_ELEM_ID_1, templateData1)
