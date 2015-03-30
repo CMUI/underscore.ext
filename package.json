@@ -1,23 +1,16 @@
 {
   "name": "underscore.ext",
   "homepage": "https://github.com/CMUI/underscore.ext",
-  "author": [
-    "cssmagic <cssmagic.cn@gmail.com>"
-  ],
+  "author": "cssmagic <cssmagic.cn@gmail.com>",
   "description": "Lightweight JavaScript utilities for mobile web development.",
-  "main": "dist/underscore.ext.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CMUI/underscore.ext.git"
-  },
-  "keywords": [
-    "underscore",
-    "mobile",
-    "web"
-  ],
   "license": "MIT",
-  "dependencies": {
+  "scripts": {
+    "dist": "gulp",
+    "clean": "gulp clean",
+    "js": "gulp js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "3.*",
     "del": "^1.1.1",
