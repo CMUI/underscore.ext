@@ -2,7 +2,7 @@
 describe('String - Backup for Underscore.string', function () {
 	//ref: https://github.com/epeli/underscore.string/blob/master/test/strings.js
 	describe('_.str.trim()', function () {
-		it('do basic functionality', function () {
+		it('does basic functionality', function () {
 			expect(_.str.trim(123)).to.equal('123')
 			expect(_.str.trim(' foo')).to.equal('foo')
 			expect(_.str.trim('foo ')).to.equal('foo')
@@ -26,12 +26,12 @@ describe('String - Backup for Underscore.string', function () {
 			expect(_.str.trim(null)).to.equal('')
 			expect(_.str.trim(undefined)).to.equal('')
 		})
-		it('don\'t remove inner spaces', function () {
+		it('doesn\'t remove inner spaces', function () {
 			expect(_.str.trim('   foo   bar   ')).to.equal('foo   bar')
 		})
 	})
 	describe('_.str.ltrim()', function () {
-		it('do basic functionality', function () {
+		it('does basic functionality', function () {
 			expect(_.str.ltrim(' foo')).to.equal('foo')
 			expect(_.str.ltrim(' foo')).to.equal('foo')
 			expect(_.str.ltrim('foo ')).to.equal('foo ')
@@ -45,12 +45,12 @@ describe('String - Backup for Underscore.string', function () {
 			expect(_.str.ltrim('_-foobar-_', '_-'), 'foobar-_')
 			expect(_.str.ltrim(123, 1), '23')
 		})
-		it('don\'t remove inner spaces', function () {
+		it('doesn\'t remove inner spaces', function () {
 			expect(_.str.ltrim('   foo   bar   ')).to.equal('foo   bar   ')
 		})
 	})
 	describe('_.str.rtrim()', function () {
-		it('do basic functionality', function () {
+		it('does basic functionality', function () {
 			expect(_.str.rtrim('http://foo/', '/'), 'http://foo')
 			expect(_.str.rtrim(' foo')).to.equal(' foo')
 			expect(_.str.rtrim('foo ')).to.equal('foo')
@@ -65,7 +65,7 @@ describe('String - Backup for Underscore.string', function () {
 			expect(_.str.rtrim('')).to.equal('')
 			expect(_.str.rtrim(null)).to.equal('')
 		})
-		it('don\'t remove inner spaces', function () {
+		it('doesn\'t remove inner spaces', function () {
 			expect(_.str.rtrim('   foo   bar   ')).to.equal('   foo   bar')
 		})
 	})

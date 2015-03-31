@@ -1,11 +1,11 @@
 describe('URL', function () {
 	describe('Query String', function () {
 		describe('_.url.parseQuery()', function () {
-			it('parse empty str to empty object', function () {
+			it('parses empty str to empty object', function () {
 				var query = ''
 				expect(_.url.parseQuery(query)).to.deep.equal({})
 			})
-			it('parse key/value pairs to object', function () {
+			it('parses key/value pairs to object', function () {
 				var query = 'foo=1&bar=2&alice=&bob&chris=3'
 				expect(_.url.parseQuery(query)).to.deep.equal({
 					foo: '1',
@@ -15,7 +15,7 @@ describe('URL', function () {
 					chris: '3'
 				})
 			})
-			it('decode keys and values in query string', function () {
+			it('decodes keys and values in query string', function () {
 				var query = 'foo=%20&bar=%2B&blah%3Dblah=1'
 				expect(_.url.parseQuery(query)).to.deep.equal({
 					foo: ' ',
@@ -23,7 +23,7 @@ describe('URL', function () {
 					'blah=blah': '1'
 				})
 			})
-			it('return empty object if bad type of param', function () {
+			it('returns empty object if bad type of param', function () {
 				var arg
 				arg = undefined
 				expect(_.url.parseQuery(arg)).to.deep.equal({})
@@ -48,7 +48,7 @@ describe('URL', function () {
 			after(function () {
 				history.replaceState(_state, null, _url)
 			})
-			it('do basic functionality', function () {
+			it('does basic functionality', function () {
 				var url
 				url = '?' + 'foo=1&bar=2&alice=&bob&chris=3'
 				history.replaceState(_state, null, url)
@@ -58,7 +58,7 @@ describe('URL', function () {
 				expect(_.url.getParam('bob')).to.equal('')
 				expect(_.url.getParam('chris')).to.equal('3')
 			})
-			it('return `undefined` if getting a missing param key', function () {
+			it('returns `undefined` if getting a missing param key', function () {
 				var url
 				url = '?'
 				history.replaceState(_state, null, url)
@@ -67,7 +67,7 @@ describe('URL', function () {
 				history.replaceState(_state, null, url)
 				expect(_.url.getParam('blah')).to.be.undefined
 			})
-			it('return `false` if bad type of param', function () {
+			it('returns `false` if bad type of param', function () {
 				var arg
 				arg = undefined
 				expect(_.url.getParam(arg)).to.be.false
@@ -84,7 +84,7 @@ describe('URL', function () {
 				arg = it
 				expect(_.url.getParam(arg)).to.be.false
 			})
-			it('re-parse if url changed', function () {
+			it('re-parses if url changed', function () {
 				var url = '?' + 'foo=%20&bar=%2B&blah%3Dblah=1'
 				history.replaceState(_state, null, url)
 				expect(_.url.getParam('foo')).to.equal(' ')

@@ -13,7 +13,7 @@ describe('Action', function () {
 			})
 		})
 		describe('_.action.trigger()', function () {
-			it('do basic functionality', function () {
+			it('does basic functionality', function () {
 				var key1 = 'test-foo'
 				var key2 = 'test-bar'
 				actionSet = {
@@ -30,7 +30,7 @@ describe('Action', function () {
 				_.action.trigger('bar')
 				expect(testKey).to.equal(key2)
 			})
-			it('call callback on the specified context', function () {
+			it('calls callback on the specified context', function () {
 				var context = {}
 				actionSet = {
 					foo: function () {
@@ -62,7 +62,7 @@ describe('Action', function () {
 			actionName = Date.now().toString(36)
 			randomKey = Math.random().toString(36)
 		})
-		it('get action name from `href`', function (done) {
+		it('gets action name from `href`', function (done) {
 			$link.attr('href', '#' + actionName)
 			actionSet[actionName] = function () {
 				testKey = randomKey
@@ -74,7 +74,7 @@ describe('Action', function () {
 				done()
 			}, 50)
 		})
-		it('get action name from `href` - context points to the link', function (done) {
+		it('gets action name from `href` - context points to the link', function (done) {
 			$link.attr('href', '#' + actionName)
 			actionSet[actionName] = function () {
 				expect(this).to.equal($link[0])
@@ -83,7 +83,7 @@ describe('Action', function () {
 			_.action.add(actionSet)
 			$link.click()
 		})
-		it('get action name from `data-action`', function (done) {
+		it('gets action name from `data-action`', function (done) {
 			$link.attr('href', '#')
 			$link.attr('data-action', actionName)
 			actionSet[actionName] = function () {
@@ -96,7 +96,7 @@ describe('Action', function () {
 				done()
 			}, 50)
 		})
-		it('get action name from `data-action` - context points to the link', function (done) {
+		it('gets action name from `data-action` - context points to the link', function (done) {
 			$link.attr('href', '#')
 			$link.attr('data-action', actionName)
 			actionSet[actionName] = function () {
@@ -106,7 +106,7 @@ describe('Action', function () {
 			_.action.add(actionSet)
 			$link.click()
 		})
-		it('accept `data-action` value as a hash', function (done) {
+		it('accepts `data-action` value as a hash', function (done) {
 			$link.attr('href', '#')
 			$link.attr('data-action', '#' + actionName)
 			actionSet[actionName] = function () {
