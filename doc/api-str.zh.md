@@ -4,7 +4,7 @@
 
 以下预定义的变量在业务层可以直接使用。
 
-### `_.str.RE_EMAIL`<a name="js-var-re-email"></a>
+### `_.str.RE_EMAIL`<a name="js-var-RE_EMAIL"></a>
 
 校验电子邮箱的正则表达式。
 
@@ -16,7 +16,7 @@ _.str.RE_EMAIL.test('foo@bar')  // => false
 _.str.RE_EMAIL.test('foo.bar.cn')  // => false
 ```
 
-### `_.str.RE_MOBILE`<a name="js-var-re-mobile"></a>
+### `_.str.RE_MOBILE`<a name="js-var-RE_MOBILE"></a>
 
 校验手机号的正则表达式。
 
@@ -30,7 +30,7 @@ _.str.RE_MOBILE.test('021-55668899')  // => false
 _.str.RE_MOBILE.test('10086')  // => false
 ```
 
-### `_.str.RE_POSTCODE`<a name="js-var-re-postcode"></a>
+### `_.str.RE_POSTCODE`<a name="js-var-RE_POSTCODE"></a>
 
 校验邮政编码的正则表达式。
 

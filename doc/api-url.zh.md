@@ -77,24 +77,24 @@ _.url.parseQuery('absentKey')  // => undefined
 
 解析 URL 的各个组成部分。URL 各个组成部分的名称及含义如下：
 
-* `'protocol'` - 协议
-* `'hostname'` - 主机名
-* `'port'` - 端口号
-* `'host'` - 主机（含端口号）
-* `'pathname'` - 路径（含文件名）
-* `'search'` - query string 部分（含开头的 `?` 字符）
-* `'hash'` - hash 部分（含开头的 `#` 字符）
+* `protocol` -- 协议
+* `hostname` -- 主机名
+* `port` -- 端口号
+* `host` -- 主机（含端口号）
+* `pathname` -- 路径（含文件名）
+* `search` -- query string 部分（含开头的 `?` 字符）
+* `hash` -- hash 部分（含开头的 `#` 字符）
 
 可以看出它们和 `location` 对象的各个 key 的含义相同。
 
 #### 参数
 
-* `url` -- 字符串。需要解析的 URL。
+* `url` -- 字符串。需要解析的 URL。若此 URL 不完整，则视为相对路径，以当前页面为基准进行解析。
 * `part` -- 字符串。可选参数。需要解析 URL 中的特定部分，合法的取值参见上述 “URL 的各个组成部分” 的名称。
 
 #### 返回值
 
-* 当未指定任何参数时：空对象。
+* 当未指定任何参数时：空对象（`{}`）。
 * 当未指定 `part` 参数时：对象。整个 URL 的解析结果，URL 的各个组成部分以名值对的方式保存。
 * 当指定 `part` 参数时：字符串。URL 中的指定部分的值。如不存在某个部分，则值为空字符串。
 
@@ -106,7 +106,7 @@ _.url.parseQuery('absentKey')  // => undefined
 
 ```js
 var url = 'http://domain.com/foo/bar'
-_.url.parseQuery(url)  // => {
+_.url.parseUrl(url)  // => {
 //     protocol: 'http:',
 //     hostname: 'domain.com',
 //     port: '',
@@ -116,6 +116,6 @@ _.url.parseQuery(url)  // => {
 //     hash: '',
 // }
 
-_.url.parseQuery(url, 'pathname')  // => '/foo/bar'
-_.url.parseQuery(url, 'search')  // => ''
+_.url.parseUrl(url, 'pathname')  // => '/foo/bar'
+_.url.parseUrl(url, 'search')  // => ''
 ```
