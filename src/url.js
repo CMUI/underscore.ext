@@ -6,9 +6,6 @@ void function (window, _ext) {
 	//namespace
 	var url = {}
 
-	//page type
-	url.isInFrame = window.self !== window.top
-
 	//basic info
 	var loc = window.location
 
