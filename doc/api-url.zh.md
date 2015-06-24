@@ -1,11 +1,5 @@
 # API 文档 - `url` 模块
 
-## JavaScript 变量<a name="js-var"></a>
-
-### `_.url.isInFrame`<a name="js-var-isInFrame"></a>
-
-布尔值。当前页面是否处于框架（`<frame>` 或 `<iframe>`）中。
-
 ## JavaScript 接口<a name="js-api"></a>
 
 ### `_.url.parseQuery(query)`<a name="js-api-parseQuery"></a>
@@ -46,7 +40,7 @@ _.url.parseQuery('')  // => {}
 
 ### `_.url.getParam(key)`<a name="js-api-getParam"></a>
 
-获取当前页面的某个 URL 参数的值。（“URL 参数” 即为 query string 中的 key。）
+获取当前页面的某个 URL 参数的值。（“URL 参数” 即为 query string 中的名值对。）
 
 #### 参数
 
@@ -69,6 +63,29 @@ _.url.parseQuery('')  // => {}
 _.url.parseQuery('foo')  // => ''
 _.url.parseQuery('bar')  // => '2'
 _.url.parseQuery('absentKey')  // => undefined
+```
+
+***
+
+### `_.url.appendParam(url, param)`<a name="js-api-appendParam"></a>
+
+为给定的 URL 附加新的参数。
+
+#### 参数
+
+* `url` -- 字符串。待处理的 URL。
+* `param` -- 对象。需要附加的 URL 参数（名值对）。
+
+#### 返回值
+
+字符串。已附加 URL 参数的新的 URL。
+
+#### 示例
+
+```js
+var url = 'http://domain.com/path/file'
+url = _.url.appendParam(url, {foo: 'bar'})  // => 'http://domain.com/path/file?foo=bar'
+url = _.url.appendParam(url, {test: 1})  // => 'http://domain.com/path/file?foo=bar&test=1'
 ```
 
 ***
