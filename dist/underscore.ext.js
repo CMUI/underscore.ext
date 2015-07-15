@@ -4,13 +4,16 @@
 void function (window, undefined) {
 	'use strict'
 
+
 ////////////////////  var  ////////////////////
 var _ = window._
 var $ = window.Zepto || window.jQuery || window.$
 var document = window.document
 
+
 //check dependency
 if (!_ || !$) return false
+
 
 ////////////////////  core  ////////////////////
 //namespace
@@ -59,6 +62,7 @@ void function (window, _ext) {
 	}
 
 }(window, _ext)
+
 
 ////////////////////  str - backup for underscore.string  ////////////////////
 //this file contains apis same as underscore.string's.
@@ -142,6 +146,7 @@ void function (window, _ext) {
 	//exports
 	_ext.exports('str', str)
 }(window, _ext)
+
 
 ////////////////////  str  ////////////////////
 void function (window, _ext) {
@@ -240,6 +245,7 @@ void function (window, _ext) {
 	_ext.exports('str', str)
 }(window, _ext)
 
+
 ////////////////////  root  ////////////////////
 void function (window, _ext) {
 	'use strict'
@@ -261,6 +267,7 @@ void function (window, _ext) {
 
 	_ext.exports('root', root)
 }(window, _ext)
+
 
 ////////////////////  ua  ////////////////////
 void function (window, _ext) {
@@ -338,15 +345,13 @@ void function (window, _ext) {
 	_ext.exports('ua', ua)
 }(window, _ext)
 
+
 ////////////////////  url  ////////////////////
 void function (window, _ext) {
 	'use strict'
 
 	//namespace
 	var url = {}
-
-	//page type
-	url.isInFrame = window.self !== window.top
 
 	//basic info
 	var loc = window.location
@@ -550,6 +555,7 @@ void function (window, _ext) {
 	_ext.exports('url', url)
 }(window, _ext)
 
+
 ////////////////////  dom  ////////////////////
 void function (window, _ext) {
 	'use strict'
@@ -609,11 +615,13 @@ void function (window, _ext) {
 	_ext.exports('dom', dom)
 }(window, _ext)
 
+
 ////////////////////  action  ////////////////////
 //include and wrap external module: action.js
 
 void function (window, _ext) {
 	'use strict'
+
 
 /**
  * Action - Easy and lazy solution for click-event-binding.
@@ -725,15 +733,18 @@ var action = function () {
 
 }()
 
+
 	//exports
 	_ext.exports('action', action)
 }(window, _ext)
+
 
 ////////////////////  template  ////////////////////
 //include and wrap external module: underscore-template
 
 void function (window, _ext) {
 	'use strict'
+
 
 /**
  * Underscore-template - More APIs for Underscore's template engine - template fetching, rendering and caching.
@@ -889,19 +900,10 @@ var template = function () {
 
 }()
 
-var _config = {
-	//compatible with ejs
-	interpolate : /<%-([\s\S]+?)%>/g,
-	escape      : /<%=([\s\S]+?)%>/g,
-
-	//to avoid use `with` in compiled templates
-	//see: https://github.com/cssmagic/blog/issues/4
-	variable: 'data'
-}
-_.extend(_.templateSettings, _config)
 
 	//exports
 	_ext.exports('template', template)
 }(window, _ext)
+
 
 }(this);
