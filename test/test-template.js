@@ -1,4 +1,13 @@
 describe('Template', function () {
+	before(function () {
+		var _config = {
+			variable: 'data',
+			interpolate: /<%-([\s\S]+?)%>/g,
+			escape:      /<%=([\s\S]+?)%>/g,
+		}
+		_.extend(_.templateSettings, _config)
+	})
+
 	describe('APIs', function () {
 		//const
 		var TEMPLATE_ELEM_ID_1 = 'elem-paragraph'
